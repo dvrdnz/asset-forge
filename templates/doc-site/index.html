@@ -1,0 +1,403 @@
+<!--
+  ============================================================
+  docs-site — Markdown Doc Site Template
+  ============================================================
+  A zero-build GitHub Pages template that renders local
+  Markdown files with a sidebar, dark/light mode toggle,
+  and multi-file navigation.
+
+  Usage:
+    1. Copy this file into the root of your repo
+    2. Edit the FILES array (~line 220) to list your .md files
+    3. Push — enable GitHub Pages from root /
+    4. Done. The sidebar and dark mode work out of the box.
+
+  Requirements:
+    - Files must be served over HTTP (GitHub Pages, Live Server)
+    - fetch() does not work on the file:// protocol
+    - CDN dependencies: marked.js (jsdelivr), Inter + JetBrains Mono (Google Fonts)
+    - No npm, no build step — but an internet connection is required on first load
+  ============================================================
+-->
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>doc-site</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Themes ── */
+    :root {
+      --bg:       #0d1117;
+      --surface:  #161b22;
+      --border:   #30363d;
+      --text:     #e6edf3;
+      --muted:    #7d8590;
+      --blue:     #58a6ff;
+      --green:    #7ee787;
+      --orange:   #f97316;
+      --radius:   6px;
+      --sidebar-w: 220px;
+      --transition: 0.2s ease;
+    }
+    [data-theme="light"] {
+      --bg:      #ffffff;
+      --surface: #f6f8fa;
+      --border:  #d0d7de;
+      --text:    #1f2328;
+      --muted:   #656d76;
+      --blue:    #0969da;
+      --green:   #1a7f37;
+      --orange:  #d4420a;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      transition: background var(--transition), color var(--transition);
+    }
+
+    /* ── Shell ── */
+    .shell {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      width: var(--sidebar-w);
+      flex-shrink: 0;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      transition: transform var(--transition), background var(--transition), border-color var(--transition);
+      z-index: 50;
+    }
+    .sidebar.collapsed {
+      transform: translateX(calc(-1 * var(--sidebar-w)));
+      position: fixed;
+    }
+
+    .sidebar-header {
+      padding: 1rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+    .brand {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .brand span { color: var(--orange); }
+
+    /* Dark mode toggle */
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.3rem;
+      cursor: pointer;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color var(--transition), border-color var(--transition);
+      flex-shrink: 0;
+    }
+    .theme-toggle:hover { color: var(--text); border-color: var(--muted); }
+    .theme-toggle svg { width: 14px; height: 14px; }
+    .icon-sun  { display: none; }
+    .icon-moon { display: block; }
+    [data-theme="light"] .icon-sun  { display: block; }
+    [data-theme="light"] .icon-moon { display: none; }
+
+    /* Nav */
+    .nav-section {
+      padding: 0.75rem 0.5rem;
+      flex: 1;
+    }
+    .nav-label {
+      font-size: 0.68rem;
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      padding: 0 0.5rem 0.5rem;
+    }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 0.6rem;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-size: 0.85rem;
+      color: var(--muted);
+      transition: background var(--transition), color var(--transition);
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+    }
+    .nav-item:hover { background: var(--bg); color: var(--text); }
+    .nav-item.active { background: var(--bg); color: var(--text); font-weight: 500; }
+    .nav-item svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+    /* ── Main ── */
+    .main {
+      flex: 1;
+      min-width: 0;
+      padding: 2.5rem 2rem 5rem;
+      max-width: 860px;
+    }
+
+    /* ── Sidebar toggle button (mobile / collapsed) ── */
+    .sidebar-toggle {
+      position: fixed;
+      top: 0.85rem;
+      left: 0.85rem;
+      z-index: 100;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.4rem;
+      cursor: pointer;
+      color: var(--muted);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      transition: color var(--transition);
+    }
+    .sidebar-toggle:hover { color: var(--text); }
+    .sidebar-toggle svg { width: 16px; height: 16px; }
+    .sidebar.collapsed ~ .main .sidebar-toggle,
+    .sidebar-toggle.visible { display: flex; }
+
+    /* ── Loading ── */
+    #loading {
+      color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      padding: 2rem 0;
+    }
+
+    /* ── Markdown styles ── */
+    #readme h1 {
+      font-size: 1.85rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1.1rem;
+    }
+    #readme h2 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      padding-bottom: 0.3rem;
+      border-bottom: 1px solid var(--border);
+      margin: 2rem 0 0.8rem;
+    }
+    #readme h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin: 1.4rem 0 0.4rem;
+    }
+    #readme p { margin-bottom: 0.8rem; }
+    #readme a { color: var(--blue); text-decoration: none; }
+    #readme a:hover { text-decoration: underline; }
+    #readme blockquote {
+      border-left: 3px solid var(--orange);
+      padding: 0.3rem 0 0.3rem 1rem;
+      margin: 0.8rem 0;
+    }
+    #readme blockquote p { color: var(--muted); margin: 0; }
+    #readme hr { border: none; border-top: 1px solid var(--border); margin: 1.8rem 0; }
+    #readme ul, #readme ol { padding-left: 1.4rem; margin-bottom: 0.8rem; }
+    #readme li { margin-bottom: 0.25rem; }
+    #readme code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8em;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.1em 0.4em;
+    }
+    #readme pre {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem;
+      overflow-x: auto;
+      margin: 0.8rem 0;
+    }
+    #readme pre code {
+      font-size: 0.8rem;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+    #readme table { width: 100%; border-collapse: collapse; margin: 0.8rem 0; font-size: 0.875rem; }
+    #readme th { background: var(--surface); border: 1px solid var(--border); padding: 0.5rem 0.8rem; text-align: left; font-weight: 600; }
+    #readme td { border: 1px solid var(--border); padding: 0.5rem 0.8rem; }
+    #readme tr:hover td { background: rgba(128,128,128,0.04); }
+    #readme img { display: inline; vertical-align: middle; margin: 0 2px; }
+
+    /* ── Responsive ── */
+    @media (max-width: 700px) {
+      .sidebar { position: fixed; height: 100vh; }
+      .sidebar.collapsed { transform: translateX(calc(-1 * var(--sidebar-w))); }
+      .sidebar-toggle { display: flex; }
+      .main { padding: 2rem 1.1rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <a class="brand" href="#">⚒️ doc<span>-site</span></a>
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark/light mode">
+        <!-- moon icon (shown in dark mode) -->
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+        <!-- sun icon (shown in light mode) -->
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+      </button>
+    </div>
+
+    <nav class="nav-section">
+      <p class="nav-label">Docs</p>
+      <div id="nav-list"></div>
+    </nav>
+  </aside>
+
+  <!-- Main content -->
+  <main class="main">
+    <button class="sidebar-toggle" id="sidebar-toggle" onclick="toggleSidebar()" title="Toggle sidebar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+    <div id="loading">loading…</div>
+    <div id="readme"></div>
+  </main>
+
+</div>
+
+<script>
+  // ── File list — add new root .md files here ──────────────────────────────
+  const FILES = [
+    { label: 'README',       file: 'README.md',       icon: 'home' },
+    { label: 'Contributing', file: 'CONTRIBUTING.md', icon: 'git-branch' },
+    { label: 'License',      file: 'LICENSE.md',      icon: 'file-text' },
+  ];
+
+  const ICONS = {
+    'home':       '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>',
+    'git-branch': '<line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/>',
+    'file-text':  '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>',
+  };
+
+  let activeFile = 'README.md';
+
+  // ── Build nav ─────────────────────────────────────────────────────────────
+  function buildNav() {
+    const list = document.getElementById('nav-list');
+    FILES.forEach(({ label, file, icon }) => {
+      const btn = document.createElement('button');
+      btn.className = 'nav-item' + (file === activeFile ? ' active' : '');
+      btn.innerHTML = `
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${ICONS[icon]}</svg>
+        ${label}
+      `;
+      btn.onclick = () => loadFile(file);
+      list.appendChild(btn);
+    });
+  }
+
+  // ── Load & render a markdown file ────────────────────────────────────────
+  function loadFile(file) {
+    activeFile = file;
+
+    // Update nav active state
+    document.querySelectorAll('.nav-item').forEach((btn, i) => {
+      btn.classList.toggle('active', FILES[i].file === file);
+    });
+
+    const readme = document.getElementById('readme');
+    const loading = document.getElementById('loading');
+    readme.innerHTML = '';
+    loading.style.display = 'block';
+    loading.textContent = `loading ${file}…`;
+
+    fetch(`./${file}`)
+      .then(r => {
+        if (!r.ok) throw new Error(`${r.status}`);
+        return r.text();
+      })
+      .then(md => {
+        loading.style.display = 'none';
+        readme.innerHTML = marked.parse(md);
+        const h1 = readme.querySelector('h1');
+        if (h1) document.title = h1.textContent.replace(/[^\w\s\-]/g, '').trim();
+      })
+      .catch(() => {
+        loading.style.display = 'none';
+        readme.innerHTML = `<p style="color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:0.82rem">${file} not found.</p>`;
+      });
+  }
+
+  // ── Theme toggle ──────────────────────────────────────────────────────────
+  function toggleTheme() {
+    const html = document.documentElement;
+    const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('af-theme', next);
+  }
+
+  // ── Sidebar toggle ────────────────────────────────────────────────────────
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('collapsed');
+  }
+
+  // ── Init ──────────────────────────────────────────────────────────────────
+  const savedTheme = localStorage.getItem('af-theme');
+  if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+
+  buildNav();
+  loadFile('README.md');
+</script>
+</body>
+</html>

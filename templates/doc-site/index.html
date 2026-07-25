@@ -368,6 +368,11 @@
         return r.text();
       })
       .then(md => {
+        const env = {
+          SITE_URL: new URL('.', window.location.href).href.replace(/\/$/, '')
+        };
+        md = md.replace(/\{\{(\w+)\}\}/g, (m, key) => env[key] || m);
+
         loading.style.display = 'none';
         readme.innerHTML = marked.parse(md);
         const h1 = readme.querySelector('h1');
@@ -401,3 +406,4 @@
 </script>
 </body>
 </html>
+```eof

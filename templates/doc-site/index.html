@@ -8,7 +8,10 @@
 
   Usage:
     1. Copy this file into the root of your repo
-    2. Edit the FILES array (~line 220) to list your .md files
+    2. Edit the FILES array (~line 304) to list your doc entries —
+       each one is a label plus a list of candidate filenames
+       (e.g. case/extension variants); the first candidate that
+       actually exists is used, others are dropped from the nav
     3. Push — enable GitHub Pages from root /
     4. Done. The sidebar and dark mode work out of the box.
 
@@ -25,7 +28,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>doc-site</title>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<!-- Pinned to marked@18.0.7 with SRI to prevent silent version drift --
+     unversioned CDN URLs can silently fall back to a years-stale release
+     if a file is later removed from newer package versions, with no
+     error. Re-verify hash before deploying:
+     curl -s https://cdn.jsdelivr.net/npm/marked@18.0.7/lib/marked.umd.js | openssl dgst -sha384 -binary | openssl base64 -A -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@18.0.7/lib/marked.umd.js"
+      integrity="sha384-7njNzKcJUBdezPGfqUrIFizi2QkXJH0M6wF3o1h9GE/nce6X4YdecMwh31B19yTi"
+      crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
@@ -317,11 +327,15 @@
 </div>
 
 <script>
-  // ── File list — add new root .md files here ──────────────────────────────
+  // ── File list — add new root doc entries here ─────────────────────────────
+  // Each entry lists filename candidates in priority order (case variants,
+  // extension variants, etc.). At startup every candidate is probed and the
+  // first one that actually resolves (HTTP ok) wins; entries with no match
+  // at all are silently dropped from the nav instead of showing a dead link.
   const FILES = [
-    { label: 'README',       file: 'README.md',       icon: 'home' },
-    { label: 'Contributing', file: 'CONTRIBUTING.md', icon: 'git-branch' },
-    { label: 'License',      file: 'LICENSE.md',      icon: 'file-text' },
+    { label: 'README',       candidates: ['README.md', 'readme.md', 'Readme.md'],                    icon: 'home' },
+    { label: 'Contributing', candidates: ['CONTRIBUTING.md', 'contributing.md', 'Contributing.md'],  icon: 'git-branch' },
+    { label: 'License',      candidates: ['LICENSE', 'LICENSE.md', 'LICENSE.txt', 'license'],         icon: 'file-text' },
   ];
 
   const ICONS = {
@@ -330,12 +344,29 @@
     'file-text':  '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>',
   };
 
-  let activeFile = 'README.md';
+  // Populated at startup with only the entries that actually resolved
+  // to a real file: { label, file, icon }[]
+  let resolvedFiles = [];
+  let activeFile = null;
 
-  // ── Build nav ─────────────────────────────────────────────────────────────
+  // ── Probe candidates, return the first filename that resolves ─────────────
+  async function resolveExisting(candidates) {
+    for (const name of candidates) {
+      try {
+        const r = await fetch(`./${name}`, { method: 'HEAD', cache: 'no-store' });
+        if (r.ok) return name;
+      } catch (_) {
+        // network error / blocked request — just try the next candidate
+      }
+    }
+    return null;
+  }
+
+  // ── Build nav from resolved files only ─────────────────────────────────────
   function buildNav() {
     const list = document.getElementById('nav-list');
-    FILES.forEach(({ label, file, icon }) => {
+    list.innerHTML = '';
+    resolvedFiles.forEach(({ label, file, icon }) => {
       const btn = document.createElement('button');
       btn.className = 'nav-item' + (file === activeFile ? ' active' : '');
       btn.innerHTML = `
@@ -353,7 +384,7 @@
 
     // Update nav active state
     document.querySelectorAll('.nav-item').forEach((btn, i) => {
-      btn.classList.toggle('active', FILES[i].file === file);
+      btn.classList.toggle('active', resolvedFiles[i]?.file === file);
     });
 
     const readme = document.getElementById('readme');
@@ -374,6 +405,21 @@
         md = md.replace(/\{\{(\w+)\}\}/g, (m, key) => env[key] || m);
 
         loading.style.display = 'none';
+
+        // Defensive check: if the marked.js CDN failed to load (blocked,
+        // offline, ad-blocker, etc.), don't silently throw — that would land
+        // in the .catch() below and show a misleading "not found" message
+        // for a file that does exist. Show the raw Markdown instead.
+        if (typeof marked === 'undefined' || typeof marked.parse !== 'function') {
+          readme.innerHTML = `
+            <p style="color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:0.82rem;margin-bottom:0.8rem">
+              Markdown renderer failed to load (marked.js CDN may be blocked). Showing raw file contents below.
+            </p>
+            <pre style="white-space:pre-wrap"></pre>`;
+          readme.querySelector('pre').textContent = md;
+          return;
+        }
+
         readme.innerHTML = marked.parse(md);
         const h1 = readme.querySelector('h1');
         if (h1) document.title = h1.textContent.replace(/[^\w\s\-]/g, '').trim();
@@ -397,13 +443,32 @@
     document.getElementById('sidebar').classList.toggle('collapsed');
   }
 
-  // ── Init ──────────────────────────────────────────────────────────────────
+  // ── Init: resolve which files actually exist, then build nav & load one ──
+  async function init() {
+    const loading = document.getElementById('loading');
+    loading.textContent = 'checking available docs…';
+
+    const results = await Promise.all(
+      FILES.map(async ({ label, candidates, icon }) => {
+        const file = await resolveExisting(candidates);
+        return file ? { label, file, icon } : null;
+      })
+    );
+    resolvedFiles = results.filter(Boolean);
+
+    if (resolvedFiles.length === 0) {
+      loading.textContent = 'No documentation files found in this repo.';
+      return;
+    }
+
+    buildNav();
+    loadFile(resolvedFiles[0].file);
+  }
+
   const savedTheme = localStorage.getItem('af-theme');
   if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
 
-  buildNav();
-  loadFile('README.md');
+  init();
 </script>
 </body>
 </html>
-```eof

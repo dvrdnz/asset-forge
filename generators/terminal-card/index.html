@@ -1,0 +1,2445 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>generators/terminal-card</title>
+    <!-- CSP: script-src and style-src use SHA-256 hashes for the inline script and style blocks. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-yuXuAoUDojzoYHHDHH1WPq9lnBEeSqqT+Zau4+oc2Ws='; style-src 'self' 'sha256-SS39iz1q9VgHjwNDEhhfmmIfFw0RE7usd0OpKFJugwU=' 'sha256-FQvfrndd1HnrIr8FYG/u95RqMiqN+18Kos2uBz5BaPQ='; connect-src 'self' https://api.github.com; img-src 'self' data:; font-src 'self'; object-src 'none'; base-uri 'self';">
+    <style id="tailwind-css">
+        *,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width:480px){.container{max-width:480px}}@media (min-width:640px){.container{max-width:640px}}@media (min-width:768px){.container{max-width:768px}}@media (min-width:1024px){.container{max-width:1024px}}@media (min-width:1280px){.container{max-width:1280px}}@media (min-width:1536px){.container{max-width:1536px}}.pointer-events-none{pointer-events:none}.visible{visibility:visible}.static{position:static}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.-left-2{left:-.5rem}.bottom-4{bottom:1rem}.right-4{right:1rem}.top-0{top:0}.top-1\/2{top:50%}.top-4{top:1rem}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-1{margin-bottom:.25rem}.mb-1\.5{margin-bottom:.375rem}.mb-2{margin-bottom:.5rem}.mb-3{margin-bottom:.75rem}.mb-4{margin-bottom:1rem}.mb-5{margin-bottom:1.25rem}.mb-6{margin-bottom:1.5rem}.ml-0\.5{margin-left:.125rem}.ml-1{margin-left:.25rem}.ml-1\.5{margin-left:.375rem}.mt-0\.5{margin-top:.125rem}.mt-1{margin-top:.25rem}.mt-2{margin-top:.5rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.mt-auto{margin-top:auto}.block{display:block}.inline{display:inline}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-14{height:3.5rem}.h-2{height:.5rem}.h-3\.5{height:.875rem}.h-4{height:1rem}.h-5{height:1.25rem}.h-7{height:1.75rem}.h-8{height:2rem}.h-9{height:2.25rem}.h-full{height:100%}.max-h-\[300px\]{max-height:300px}.min-h-\[100dvh\]{min-height:100dvh}.min-h-\[360px\]{min-height:360px}.min-h-\[460px\]{min-height:460px}.w-1\/3{width:33.333333%}.w-12{width:3rem}.w-2{width:.5rem}.w-24{width:6rem}.w-3\.5{width:.875rem}.w-4{width:1rem}.w-5{width:1.25rem}.w-7{width:1.75rem}.w-8{width:2rem}.w-9{width:2.25rem}.w-full{width:100%}.min-w-0{min-width:0}.min-w-\[130px\]{min-width:130px}.max-w-3xl{max-width:48rem}.max-w-7xl{max-width:80rem}.max-w-full{max-width:100%}.max-w-lg{max-width:32rem}.flex-1{flex:1 1 0%}.flex-shrink-0{flex-shrink:0}.shrink{flex-shrink:1}.shrink-0{flex-shrink:0}.-translate-y-1\/2{--tw-translate-y:-50%}.-translate-y-1\/2,.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes pulse{50%{opacity:.5}}.animate-pulse{animation:pulse 2s cubic-bezier(.4,0,.6,1) infinite}.cursor-pointer{cursor:pointer}.select-all{-webkit-user-select:all;-moz-user-select:all;user-select:all}.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-end{align-items:flex-end}.items-center{align-items:center}.items-stretch{align-items:stretch}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-0\.5{gap:.125rem}.gap-1{gap:.25rem}.gap-1\.5{gap:.375rem}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-8{gap:2rem}.space-y-1>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.25rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.25rem*var(--tw-space-y-reverse))}.space-y-2>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.5rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.5rem*var(--tw-space-y-reverse))}.space-y-3>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.75rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.75rem*var(--tw-space-y-reverse))}.space-y-4>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem*var(--tw-space-y-reverse))}.space-y-5>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.25rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.25rem*var(--tw-space-y-reverse))}.space-y-6>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem*var(--tw-space-y-reverse))}.overflow-auto{overflow:auto}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.overflow-y-auto{overflow-y:auto}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.whitespace-pre{white-space:pre}.rounded{border-radius:.25rem}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:.5rem}.rounded-md{border-radius:.375rem}.rounded-xl{border-radius:.75rem}.rounded-r-xl{border-top-right-radius:.75rem;border-bottom-right-radius:.75rem}.border{border-width:1px}.border-2{border-width:2px}.border-b{border-bottom-width:1px}.border-l{border-left-width:1px}.border-l-2{border-left-width:2px}.border-r{border-right-width:1px}.border-t{border-top-width:1px}.border-none{border-style:none}.border-blue-500{--tw-border-opacity:1;border-color:rgb(59 130 246/var(--tw-border-opacity,1))}.border-blue-500\/20{border-color:rgba(59,130,246,.2)}.border-blue-500\/40{border-color:rgba(59,130,246,.4)}.border-l-emerald-400{--tw-border-opacity:1;border-left-color:rgb(52 211 153/var(--tw-border-opacity,1))}.bg-\[\#0d1117\]{--tw-bg-opacity:1;background-color:rgb(13 17 23/var(--tw-bg-opacity,1))}.bg-\[\#ffffff\]{--tw-bg-opacity:1;background-color:rgb(255 255 255/var(--tw-bg-opacity,1))}.bg-amber-500{--tw-bg-opacity:1;background-color:rgb(245 158 11/var(--tw-bg-opacity,1))}.bg-blue-500\/10{background-color:rgba(59,130,246,.1)}.bg-blue-600{--tw-bg-opacity:1;background-color:rgb(37 99 235/var(--tw-bg-opacity,1))}.bg-blue-600\/15{background-color:rgba(37,99,235,.15)}.bg-blue-600\/20{background-color:rgba(37,99,235,.2)}.bg-blue-600\/30{background-color:rgba(37,99,235,.3)}.bg-emerald-400{--tw-bg-opacity:1;background-color:rgb(52 211 153/var(--tw-bg-opacity,1))}.bg-emerald-500{--tw-bg-opacity:1;background-color:rgb(16 185 129/var(--tw-bg-opacity,1))}.bg-emerald-600{--tw-bg-opacity:1;background-color:rgb(5 150 105/var(--tw-bg-opacity,1))}.bg-red-500{--tw-bg-opacity:1;background-color:rgb(239 68 68/var(--tw-bg-opacity,1))}.bg-rose-500{--tw-bg-opacity:1;background-color:rgb(244 63 94/var(--tw-bg-opacity,1))}.bg-transparent{background-color:transparent}.bg-\[radial-gradient\(var\(--ui-grid-dot\)_1px\2c transparent_1px\)\]{background-image:radial-gradient(var(--ui-grid-dot) 1px,transparent 1px)}.bg-gradient-to-br{background-image:linear-gradient(to bottom right,var(--tw-gradient-stops))}.from-blue-600{--tw-gradient-from:#2563eb var(--tw-gradient-from-position);--tw-gradient-to:rgba(37,99,235,0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.to-indigo-600{--tw-gradient-to:#4f46e5 var(--tw-gradient-to-position)}.p-0\.5{padding:.125rem}.p-1{padding:.25rem}.p-1\.5{padding:.375rem}.p-2{padding:.5rem}.p-3{padding:.75rem}.p-3\.5{padding:.875rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.p-8{padding:2rem}.px-1\.5{padding-left:.375rem;padding-right:.375rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-2\.5{padding-left:.625rem;padding-right:.625rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-4{padding-left:1rem;padding-right:1rem}.py-0\.5{padding-top:.125rem;padding-bottom:.125rem}.py-1{padding-top:.25rem;padding-bottom:.25rem}.py-1\.5{padding-top:.375rem;padding-bottom:.375rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-2\.5{padding-top:.625rem;padding-bottom:.625rem}.py-3{padding-top:.75rem;padding-bottom:.75rem}.py-6{padding-top:1.5rem;padding-bottom:1.5rem}.pb-2{padding-bottom:.5rem}.pb-3{padding-bottom:.75rem}.pl-1\.5{padding-left:.375rem}.pl-4{padding-left:1rem}.pr-1{padding-right:.25rem}.pt-2{padding-top:.5rem}.pt-4{padding-top:1rem}.text-left{text-align:left}.text-center{text-align:center}.text-right{text-align:right}.font-mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace}.font-sans{font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-\[8px\]{font-size:8px}.text-\[9px\]{font-size:9px}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xs{font-size:.75rem;line-height:1rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.italic{font-style:italic}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-wide{letter-spacing:.025em}.tracking-wider{letter-spacing:.05em}.text-amber-400{--tw-text-opacity:1;color:rgb(251 191 36/var(--tw-text-opacity,1))}.text-blue-300{--tw-text-opacity:1;color:rgb(147 197 253/var(--tw-text-opacity,1))}.text-blue-400{--tw-text-opacity:1;color:rgb(96 165 250/var(--tw-text-opacity,1))}.text-blue-500{--tw-text-opacity:1;color:rgb(59 130 246/var(--tw-text-opacity,1))}.text-emerald-400{--tw-text-opacity:1;color:rgb(52 211 153/var(--tw-text-opacity,1))}.text-indigo-400{--tw-text-opacity:1;color:rgb(129 140 248/var(--tw-text-opacity,1))}.text-purple-400{--tw-text-opacity:1;color:rgb(192 132 252/var(--tw-text-opacity,1))}.text-rose-400{--tw-text-opacity:1;color:rgb(251 113 133/var(--tw-text-opacity,1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.accent-amber-500{accent-color:#f59e0b}.accent-blue-500{accent-color:#3b82f6}.accent-blue-600{accent-color:#2563eb}.opacity-0{opacity:0}.opacity-100{opacity:1}.opacity-50{opacity:.5}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgba(0,0,0,.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color)}.shadow-2xl,.shadow-\[0_0_8px_rgba\(126\2c 231\2c 135\2c 0\.6\)\]{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-\[0_0_8px_rgba\(126\2c 231\2c 135\2c 0\.6\)\]{--tw-shadow:0 0 8px rgba(126,231,135,.6);--tw-shadow-colored:0 0 8px var(--tw-shadow-color)}.shadow-inner{--tw-shadow:inset 0 2px 4px 0 rgba(0,0,0,.05);--tw-shadow-colored:inset 0 2px 4px 0 var(--tw-shadow-color)}.shadow-inner,.shadow-lg{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color),0 4px 6px -4px var(--tw-shadow-color)}.shadow-md{--tw-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color),0 2px 4px -2px var(--tw-shadow-color)}.shadow-md,.shadow-sm{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgba(0,0,0,.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color),0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-blue-500\/10{--tw-shadow-color:rgba(59,130,246,.1);--tw-shadow:var(--tw-shadow-colored)}.shadow-blue-500\/20{--tw-shadow-color:rgba(59,130,246,.2);--tw-shadow:var(--tw-shadow-colored)}.shadow-blue-600\/30{--tw-shadow-color:rgba(37,99,235,.3);--tw-shadow:var(--tw-shadow-colored)}.outline-none{outline:2px solid transparent;outline-offset:2px}.drop-shadow-2xl{--tw-drop-shadow:drop-shadow(0 25px 25px rgba(0,0,0,.15))}.drop-shadow-2xl,.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur-md{--tw-backdrop-blur:blur(12px)}.backdrop-blur-md,.backdrop-blur-sm{-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px)}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-colors{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-opacity{transition-property:opacity;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.duration-300{transition-duration:.3s}.\[background-size\:16px_16px\]{background-size:16px 16px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--ui-scrollbar,#334155);border-radius:4px}::-webkit-scrollbar-thumb:hover{background:var(--ui-scrollbar-hover,#475569)}*{scrollbar-color:var(--ui-scrollbar,#334155) transparent;scrollbar-width:thin}input[type=range]{-webkit-appearance:none;width:100%;background:transparent}input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;height:16px;width:16px;border-radius:50%;background:#3b82f6;cursor:pointer;margin-top:-6px;box-shadow:0 0 10px rgba(59,130,246,.5)}input[type=range]::-webkit-slider-runnable-track{width:100%;height:4px;cursor:pointer;background:var(--ui-range-track,#1e293b);border-radius:2px}input[type=range]::-moz-range-thumb{height:16px;width:16px;border-radius:50%;background:#3b82f6;cursor:pointer;border:none;box-shadow:0 0 10px rgba(59,130,246,.5)}input[type=range]::-moz-range-track{width:100%;height:4px;cursor:pointer;background:var(--ui-range-track,#1e293b);border-radius:2px}input[type=range]:focus-visible{outline:2px solid #3b82f6;outline-offset:4px;border-radius:4px}a:focus-visible,button:focus-visible,input:not([type=range]):focus-visible,select:focus-visible{outline:2px solid #3b82f6;outline-offset:2px;border-radius:4px}#svg-wrapper{width:100%;max-width:460px;display:flex;align-items:center;justify-content:center;transform-origin:center center;transition:transform .15s ease-out}#preview-panel{overflow:visible}#svg-wrapper svg{width:100%;height:100%;display:block}.modal-overlay{display:none;position:fixed;inset:0;z-index:100;background-color:rgba(0,0,0,.7);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:1rem}.modal-overlay.active{display:flex}@supports not ((-webkit-backdrop-filter:blur(4px)) or (backdrop-filter:blur(4px))){.modal-overlay{background-color:rgba(0,0,0,.85)}header.backdrop-blur-md{background-color:var(--ui-surface)!important}}[data-onclick],button:not([disabled]),select{cursor:pointer}@media (max-height:600px){.lg\:sticky{position:relative!important;top:auto!important}}:root{--ui-bg:#020617;--ui-bg-rgb:2,6,23;--ui-surface:#0f172a;--ui-surface-rgb:15,23,42;--ui-surface-muted:#1e293b;--ui-surface-muted-rgb:30,41,59;--ui-control:#334155;--ui-control-rgb:51,65,85;--ui-control-muted:#64748b;--ui-text-strong:#f1f5f9;--ui-text:#e2e8f0;--ui-text-soft:#cbd5e1;--ui-text-muted:#94a3b8;--ui-text-subtle:#64748b;--ui-text-faint:#475569;--ui-border:#1e293b;--ui-border-rgb:30,41,59;--ui-border-strong:#334155;--ui-border-strong-rgb:51,65,85;--ui-scrollbar:#334155;--ui-scrollbar-hover:#475569;--ui-range-track:#1e293b;--ui-grid-dot:#334155}html.light-mode{--ui-bg:#fff;--ui-bg-rgb:255,255,255;--ui-surface:#f6f8fa;--ui-surface-rgb:246,248,250;--ui-surface-muted:#eaeef2;--ui-surface-muted-rgb:234,238,242;--ui-control:#d0d7de;--ui-control-rgb:208,215,222;--ui-control-muted:#afb8c1;--ui-text-strong:#1f2328;--ui-text:#1f2328;--ui-text-soft:#24292f;--ui-text-muted:#57606a;--ui-text-subtle:#6e7781;--ui-text-faint:#6e7781;--ui-border:#d0d7de;--ui-border-rgb:208,215,222;--ui-border-strong:#afb8c1;--ui-border-strong-rgb:175,184,193;--ui-scrollbar:#afb8c1;--ui-scrollbar-hover:#8b949e;--ui-range-track:#d0d7de;--ui-grid-dot:#d0d7de}.theme-icon-sun{display:none}html.light-mode .theme-icon-sun{display:inline-block}html.light-mode .theme-icon-moon{display:none}.ui-bg{background-color:var(--ui-bg)!important}.ui-bg-50{background-color:rgba(var(--ui-bg-rgb),.5)!important}.ui-surface{background-color:var(--ui-surface)!important}.ui-surface-90{background-color:rgba(var(--ui-surface-rgb),.9)!important}.ui-surface-80{background-color:rgba(var(--ui-surface-rgb),.8)!important}.ui-surface-60{background-color:rgba(var(--ui-surface-rgb),.6)!important}.ui-surface-50{background-color:rgba(var(--ui-surface-rgb),.5)!important}.ui-surface-muted{background-color:var(--ui-surface-muted)!important}.ui-surface-muted-80{background-color:rgba(var(--ui-surface-muted-rgb),.8)!important}.ui-surface-muted-60{background-color:rgba(var(--ui-surface-muted-rgb),.6)!important}.ui-control{background-color:var(--ui-control)!important}.ui-control-50{background-color:rgba(var(--ui-control-rgb),.5)!important}.ui-control-muted{background-color:var(--ui-control-muted)!important}.ui-text-strong{color:var(--ui-text-strong)!important}.ui-text{color:var(--ui-text)!important}.ui-text-soft{color:var(--ui-text-soft)!important}.ui-text-muted{color:var(--ui-text-muted)!important}.ui-text-subtle{color:var(--ui-text-subtle)!important}.ui-text-faint{color:var(--ui-text-faint)!important}.ui-border{border-color:var(--ui-border)!important}.ui-border-80{border-color:rgba(var(--ui-border-rgb),.8)!important}.ui-border-strong{border-color:var(--ui-border-strong)!important}.ui-border-strong-80{border-color:rgba(var(--ui-border-strong-rgb),.8)!important}.ui-border-strong-60{border-color:rgba(var(--ui-border-strong-rgb),.6)!important}.ui-border-strong-50{border-color:rgba(var(--ui-border-strong-rgb),.5)!important}.ui-border-muted{border-color:var(--ui-control-muted)!important}.hover\:ui-bg:hover{background-color:var(--ui-bg)!important}.hover\:ui-surface-muted:hover{background-color:var(--ui-surface-muted)!important}.hover\:ui-surface-muted-60:hover{background-color:rgba(var(--ui-surface-muted-rgb),.6)!important}.hover\:ui-control:hover{background-color:var(--ui-control)!important}.hover\:ui-control-50:hover{background-color:rgba(var(--ui-control-rgb),.5)!important}.hover\:ui-text-strong:hover{color:var(--ui-text-strong)!important}.hover\:ui-text:hover{color:var(--ui-text)!important}.hover\:ui-text-soft:hover{color:var(--ui-text-soft)!important}.hover\:ui-border-strong:hover{border-color:var(--ui-border-strong)!important}.hover\:ui-border-muted:hover{border-color:var(--ui-control-muted)!important}.group:hover .group-hover\:ui-text-soft{color:var(--ui-text-soft)!important}.group:hover .group-hover\:ui-border-muted{border-color:var(--ui-control-muted)!important}@media (prefers-reduced-motion:reduce){*,:after,:before{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}.selection\:bg-blue-500 ::-moz-selection{--tw-bg-opacity:1;background-color:rgb(59 130 246/var(--tw-bg-opacity,1))}.selection\:bg-blue-500 ::selection{--tw-bg-opacity:1;background-color:rgb(59 130 246/var(--tw-bg-opacity,1))}.selection\:text-white ::-moz-selection{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.selection\:text-white ::selection{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.selection\:bg-blue-500::-moz-selection{--tw-bg-opacity:1;background-color:rgb(59 130 246/var(--tw-bg-opacity,1))}.selection\:bg-blue-500::selection{--tw-bg-opacity:1;background-color:rgb(59 130 246/var(--tw-bg-opacity,1))}.selection\:text-white::-moz-selection{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.selection\:text-white::selection{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.hover\:scale-\[1\.02\]:hover{--tw-scale-x:1.02;--tw-scale-y:1.02;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:bg-blue-500:hover{--tw-bg-opacity:1;background-color:rgb(59 130 246/var(--tw-bg-opacity,1))}.hover\:bg-emerald-500:hover{--tw-bg-opacity:1;background-color:rgb(16 185 129/var(--tw-bg-opacity,1))}.hover\:bg-red-400\/10:hover{background-color:hsla(0,91%,71%,.1)}.hover\:bg-rose-500\/10:hover{background-color:rgba(244,63,94,.1)}.hover\:text-red-400:hover{--tw-text-opacity:1;color:rgb(248 113 113/var(--tw-text-opacity,1))}.hover\:text-rose-300:hover{--tw-text-opacity:1;color:rgb(253 164 175/var(--tw-text-opacity,1))}.hover\:text-rose-400:hover{--tw-text-opacity:1;color:rgb(251 113 133/var(--tw-text-opacity,1))}.focus\:border-blue-500:focus{--tw-border-opacity:1;border-color:rgb(59 130 246/var(--tw-border-opacity,1))}.focus\:border-emerald-400:focus{--tw-border-opacity:1;border-color:rgb(52 211 153/var(--tw-border-opacity,1))}.focus\:border-emerald-500:focus{--tw-border-opacity:1;border-color:rgb(16 185 129/var(--tw-border-opacity,1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.active\:scale-\[0\.98\]:active{--tw-scale-x:0.98;--tw-scale-y:0.98;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.disabled\:cursor-not-allowed:disabled{cursor:not-allowed}.disabled\:opacity-30:disabled{opacity:.3}.disabled\:opacity-50:disabled{opacity:.5}.disabled\:hover\:bg-emerald-600:hover:disabled{--tw-bg-opacity:1;background-color:rgb(5 150 105/var(--tw-bg-opacity,1))}.group:hover .group-hover\:text-blue-400{--tw-text-opacity:1;color:rgb(96 165 250/var(--tw-text-opacity,1))}@media (min-width:480px){.xs\:inline-block{display:inline-block}.xs\:flex{display:flex}}@media (min-width:640px){.sm\:block{display:block}.sm\:inline{display:inline}.sm\:hidden{display:none}.sm\:h-10{height:2.5rem}.sm\:h-16{height:4rem}.sm\:h-4{height:1rem}.sm\:h-5{height:1.25rem}.sm\:h-\[680px\]{height:680px}.sm\:min-h-\[500px\]{min-height:500px}.sm\:min-h-\[520px\]{min-height:520px}.sm\:min-h-\[670px\]{min-height:670px}.sm\:w-10{width:2.5rem}.sm\:w-4{width:1rem}.sm\:w-5{width:1.25rem}.sm\:w-auto{width:auto}.sm\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.sm\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.sm\:flex-row{flex-direction:row}.sm\:items-center{align-items:center}.sm\:justify-end{justify-content:flex-end}.sm\:gap-1\.5{gap:.375rem}.sm\:gap-2{gap:.5rem}.sm\:gap-3{gap:.75rem}.sm\:rounded-xl{border-radius:.75rem}.sm\:p-2{padding:.5rem}.sm\:p-6{padding:1.5rem}.sm\:p-8{padding:2rem}.sm\:px-2{padding-left:.5rem;padding-right:.5rem}.sm\:px-3{padding-left:.75rem;padding-right:.75rem}.sm\:px-4{padding-left:1rem;padding-right:1rem}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:py-2{padding-top:.5rem;padding-bottom:.5rem}.sm\:py-3{padding-top:.75rem;padding-bottom:.75rem}.sm\:text-\[10px\]{font-size:10px}.sm\:text-base{font-size:1rem;line-height:1.5rem}.sm\:text-sm{font-size:.875rem;line-height:1.25rem}}@media (min-width:768px){.md\:flex{display:flex}.md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (min-width:1024px){.lg\:sticky{position:sticky}.lg\:top-24{top:6rem}.lg\:col-span-5{grid-column:span 5/span 5}.lg\:col-span-7{grid-column:span 7/span 7}.lg\:flex{display:flex}.lg\:h-\[calc\(100vh-140px\)\]{height:calc(100vh - 140px)}.lg\:grid-cols-12{grid-template-columns:repeat(12,minmax(0,1fr))}.lg\:p-8{padding:2rem}.lg\:px-8{padding-left:2rem;padding-right:2rem}}@media (min-width:1280px){.xl\:col-span-5{grid-column:span 5/span 5}.xl\:col-span-7{grid-column:span 7/span 7}}
+    </style>
+</head>
+
+<body class="min-h-[100dvh] ui-bg ui-text-strong flex flex-col font-sans selection:bg-blue-500 selection:text-white">
+
+    <noscript>
+        <div class="p-8 text-center font-sans ui-text ui-surface min-h-[100dvh] flex items-center justify-center">
+            <p class="max-w-lg text-lg leading-relaxed">This SVG Terminal Card Generator requires
+                JavaScript to run. Please enable JavaScript in your browser settings and reload the page.</p>
+        </div>
+    </noscript>
+
+    <!-- App Header -->
+    <header class="border-b ui-border ui-surface-90 backdrop-blur-md sticky top-0 z-50">
+        <div
+            class="max-w-7xl mx-auto px-2.5 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between gap-1.5 sm:gap-3">
+
+            <!-- Logo & Title -->
+            <div class="flex items-center gap-2 sm:gap-3 shrink min-w-0">
+                <div
+                    class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-blue-500/20 shrink-0">
+                    <i data-lucide="terminal" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+                </div>
+                <div class="min-w-0 flex-1">
+                    <h1
+                        class="font-semibold ui-text-strong text-xs sm:text-base leading-tight flex items-center gap-1 sm:gap-2 truncate">
+                        <span class="truncate">generators/terminal-card</span>
+                        <span
+                            class="hidden xs:inline-block text-[9px] sm:text-[10px] uppercase font-bold tracking-wider px-1.5 sm:px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 shrink-0">
+                            v1.0
+                        </span>
+                    </h1>
+                    <p class="text-xs ui-text-muted hidden sm:block">
+                        Interactive SVG Terminal Card Generator
+                    </p>
+                </div>
+            </div>
+
+            <!-- Header Action Controls -->
+            <div class="flex items-center gap-1 sm:gap-2 shrink-0">
+
+                <!-- Quick Color Theme Preset Selector -->
+                <div
+                    class="hidden md:flex items-center gap-1.5 ui-surface-muted-80 rounded-xl p-1 border ui-border-strong-60">
+                    <i data-lucide="palette" class="w-4 h-4 ui-text-muted ml-1.5"></i>
+                    <select id="header-theme-select" data-onchange="apply-theme"
+                        class="bg-transparent text-xs ui-text font-medium px-2 py-1 focus:outline-none cursor-pointer">
+                        <option value="" disabled selected class="ui-surface ui-text-muted">Select Color Theme</option>
+                        <option value="github-dark" class="ui-surface ui-text">GitHub Dark</option>
+                        <option value="github-light" class="ui-surface ui-text">GitHub Light</option>
+                        <option value="dracula" class="ui-surface ui-text">Dracula</option>
+                        <option value="nord" class="ui-surface ui-text">Nord</option>
+                        <option value="tokyo-night" class="ui-surface ui-text">Tokyo Night</option>
+                        <option value="cyberpunk" class="ui-surface ui-text">Cyberpunk</option>
+                    </select>
+                </div>
+
+                <!-- Quick Content Template Selector -->
+                <div
+                    class="hidden lg:flex items-center gap-1.5 ui-surface-muted-80 rounded-xl p-1 border ui-border-strong-60">
+                    <i data-lucide="sparkles" class="w-4 h-4 text-amber-400 ml-1.5"></i>
+                    <select id="header-template-select" data-onchange="apply-template"
+                        class="bg-transparent text-xs ui-text font-medium px-2 py-1 focus:outline-none cursor-pointer">
+                        <option value="" selected class="ui-surface ui-text-muted">Load Content Template...</option>
+                        <option value="default" class="ui-surface ui-text">Standard Terminal Setup</option>
+                        <option value="cicd" class="ui-surface ui-text">CI/CD Pipeline Build</option>
+                        <option value="fullstack" class="ui-surface ui-text">Full-Stack Engineer</option>
+                        <option value="aiml" class="ui-surface ui-text">AI / ML Research Lab</option>
+                        <option value="maintainer" class="ui-surface ui-text">Open Source Maintainer</option>
+                    </select>
+                </div>
+
+                <!-- UI Theme Toggle (app chrome light/dark, independent of the SVG color theme above) -->
+                <button type="button" data-onclick="toggle-ui-theme" title="Toggle light / dark interface"
+                    aria-label="Toggle light / dark interface"
+                    class="p-1.5 sm:p-2 ui-text-muted hover:ui-text-strong hover:ui-surface-muted rounded-xl transition-colors">
+                    <i data-lucide="moon" class="w-4 h-4 theme-icon-moon"></i>
+                    <i data-lucide="sun" class="w-4 h-4 theme-icon-sun"></i>
+                </button>
+
+                <!-- Action Button Cluster -->
+                <div class="hidden xs:flex items-center gap-0.5 border-l ui-border pl-1.5 ml-0.5">
+                    <button type="button" data-onclick="export-json" title="Export JSON Configuration"
+                        aria-label="Export JSON Configuration"
+                        class="p-1.5 sm:p-2 ui-text-muted hover:ui-text-strong hover:ui-surface-muted rounded-xl transition-colors text-xs">
+                        <i data-lucide="file-json" class="w-4 h-4"></i>
+                    </button>
+
+                    <button type="button" data-onclick="reset-config" title="Reset to Template Defaults"
+                        aria-label="Reset to Template Defaults"
+                        class="p-1.5 sm:p-2 ui-text-muted hover:text-rose-400 hover:ui-surface-muted rounded-xl transition-colors text-xs">
+                        <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <!-- Export CTA -->
+                <button type="button" data-onclick="open-modal" data-modal-id="export-modal"
+                    class="ml-0.5 bg-blue-600 hover:bg-blue-500 text-white px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-xl font-medium text-xs sm:text-sm flex items-center gap-1.5 sm:gap-2 shadow-md shadow-blue-600/30 transition-all hover:scale-[1.02] active:scale-[0.98] shrink-0">
+                    <i data-lucide="download" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
+                    <span class="hidden sm:inline">Export & Copy</span>
+                    <span class="sm:hidden">Export</span>
+                </button>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+        <!-- Left Column: Configuration Controls -->
+        <div class="lg:col-span-5 xl:col-span-5 space-y-6">
+
+            <!-- Navigation Tabs -->
+            <div role="tablist"
+                class="ui-surface border ui-border rounded-2xl p-1.5 flex items-center justify-between gap-1 shadow-md">
+                <button type="button" role="tab" aria-selected="true" aria-controls="editor-content"
+                    data-onclick="switch-tab" data-tab-id="terminal" id="tab-terminal"
+                    class="tab-btn flex-1 py-2 px-1.5 sm:px-3 rounded-xl text-xs font-semibold flex items-center justify-center gap-1 sm:gap-2 transition-all bg-blue-600 text-white shadow-md shadow-blue-600/30">
+                    <i data-lucide="terminal" class="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0"></i>
+                    <span class="truncate">Terminal</span>
+                </button>
+                <button type="button" role="tab" aria-selected="false" aria-controls="editor-content"
+                    data-onclick="switch-tab" data-tab-id="rail" id="tab-rail"
+                    class="tab-btn flex-1 py-2 px-1.5 sm:px-3 rounded-xl text-xs font-semibold flex items-center justify-center gap-1 sm:gap-2 transition-all ui-text-muted hover:ui-text hover:ui-surface-muted-60">
+                    <i data-lucide="git-commit" class="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0"></i>
+                    <span class="truncate">Timeline<span class="hidden sm:inline"> Rail</span></span>
+                </button>
+                <button type="button" role="tab" aria-selected="false" aria-controls="editor-content"
+                    data-onclick="switch-tab" data-tab-id="appearance" id="tab-appearance"
+                    class="tab-btn flex-1 py-2 px-1.5 sm:px-3 rounded-xl text-xs font-semibold flex items-center justify-center gap-1 sm:gap-2 transition-all ui-text-muted hover:ui-text hover:ui-surface-muted-60">
+                    <i data-lucide="palette" class="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0"></i>
+                    <span class="truncate">Themes</span>
+                </button>
+            </div>
+
+            <!-- Tab Content Panel -->
+            <div role="tabpanel" aria-labelledby="tab-terminal"
+                class="ui-surface-90 border ui-border rounded-2xl p-3.5 sm:p-6 shadow-xl backdrop-blur-sm min-h-[360px] sm:min-h-[520px]"
+                id="editor-content">
+                <!-- Injected via JavaScript -->
+            </div>
+
+            <!-- Quick Tips Card -->
+            <div class="ui-surface-50 border ui-border-80 rounded-2xl p-4 text-xs ui-text-muted space-y-2">
+                <div class="flex items-center gap-2 ui-text-soft font-semibold">
+                    <i data-lucide="sparkles" class="w-4 h-4 text-blue-400"></i>
+                    <span>GitHub Profile Tip</span>
+                </div>
+                <p class="leading-relaxed ui-text-muted">
+                    This generator produces raw, scalable vector graphics (SVG) with native SMIL animations. Embed
+                    directly into your GitHub README markdown.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Right Column: SVG Preview Component -->
+        <div class="lg:col-span-7 xl:col-span-7 lg:sticky lg:top-24 space-y-4">
+
+            <div
+                class="ui-surface-90 border ui-border rounded-2xl flex flex-col min-h-[460px] sm:h-[680px] lg:h-[calc(100vh-140px)] overflow-hidden shadow-2xl">
+
+                <!-- SVG Preview Header / Action Bar -->
+                <div
+                    class="ui-surface border-b ui-border px-2.5 sm:px-4 py-2 sm:py-3 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 sm:gap-3 shrink-0">
+
+                    <div class="flex items-center justify-between w-full sm:w-auto gap-2">
+                        <!-- View Mode Toggle (Preview vs Code) -->
+                        <div
+                            class="flex items-center gap-1 ui-surface-muted-80 p-1 rounded-xl border ui-border-strong-60">
+                            <button type="button" id="btn-view-preview" data-onclick="set-view-mode"
+                                data-view-mode="preview"
+                                class="px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1 sm:gap-1.5 transition-all bg-blue-600 text-white shadow-sm">
+                                <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+                                <span>Preview</span>
+                            </button>
+                            <button type="button" id="btn-view-code" data-onclick="set-view-mode" data-view-mode="code"
+                                class="px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1 sm:gap-1.5 transition-all ui-text-muted hover:ui-text hover:ui-control-50">
+                                <i data-lucide="code-2" class="w-3.5 h-3.5"></i>
+                                <span>Code</span>
+                            </button>
+                        </div>
+
+                        <!-- Canvas Preview Background Selectors -->
+                        <div id="bg-toggles-container" class="flex items-center gap-1">
+                            <div
+                                class="flex items-center gap-1 ui-surface-muted-80 p-1 rounded-xl border ui-border-strong-60">
+                                <button type="button" id="btn-bg-grid" data-onclick="set-preview-bg" data-bg="grid"
+                                    title="Transparent Grid Pattern" aria-label="Transparent Grid Pattern"
+                                    class="p-1.5 rounded-lg text-xs transition-colors bg-blue-600/30 text-blue-400 border border-blue-500/40">
+                                    <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+                                </button>
+                                <button type="button" id="btn-bg-gh-dark" data-onclick="set-preview-bg"
+                                    data-bg="gh-dark" title="GitHub Dark README Background (#0d1117)"
+                                    class="px-1.5 sm:px-2 py-1 rounded-lg text-[11px] font-mono transition-colors ui-text-muted hover:ui-text">
+                                    Dark
+                                </button>
+                                <button type="button" id="btn-bg-gh-light" data-onclick="set-preview-bg"
+                                    data-bg="gh-light" title="GitHub Light README Background (#ffffff)"
+                                    class="px-1.5 sm:px-2 py-1 rounded-lg text-[11px] font-mono transition-colors ui-text-muted hover:ui-text">
+                                    Light
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Actions & Zoom Controls -->
+                    <div class="flex items-center justify-between sm:justify-end gap-2 w-full sm:w-auto">
+                        <!-- Zoom Controls Bar -->
+                        <div id="zoom-controls"
+                            class="flex items-center gap-1 ui-surface-muted-60 rounded-lg p-0.5 border ui-border-strong-50">
+                            <button type="button" data-onclick="adjust-zoom" data-delta="-0.1" aria-label="Zoom Out"
+                                class="p-1 ui-text-muted hover:ui-text rounded" title="Zoom Out">
+                                <i data-lucide="zoom-out" class="w-3.5 h-3.5"></i>
+                            </button>
+                            <span id="zoom-display" class="text-[11px] font-mono ui-text-muted w-9 text-center">
+                                100%
+                            </span>
+                            <button type="button" data-onclick="adjust-zoom" data-delta="0.1" aria-label="Zoom In"
+                                class="p-1 ui-text-muted hover:ui-text rounded" title="Zoom In">
+                                <i data-lucide="zoom-in" class="w-3.5 h-3.5"></i>
+                            </button>
+                            <button type="button" data-onclick="reset-zoom"
+                                class="p-1 ui-text-muted hover:ui-text rounded" aria-label="Reset Zoom"
+                                title="Reset Zoom">
+                                <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                            </button>
+                        </div>
+
+                        <div class="flex items-center gap-1.5">
+                            <!-- Quick Copy Button -->
+                            <button type="button" id="quick-copy-btn" data-onclick="copy-code" aria-live="polite"
+                                class="p-1.5 sm:p-2 ui-surface-muted hover:ui-control ui-text rounded-lg transition-colors border ui-border-strong flex items-center gap-1 text-xs font-medium"
+                                title="Copy SVG Code">
+                                <i id="copy-icon" data-lucide="copy" class="w-3.5 h-3.5 ui-text-muted"></i>
+                                <span id="copy-text" class="hidden sm:inline">Copy Code</span>
+                            </button>
+
+                            <!-- Download SVG Button -->
+                            <button type="button" data-onclick="download-svg"
+                                class="p-1.5 sm:p-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors flex items-center gap-1 text-xs font-medium shadow-md shadow-blue-500/20"
+                                title="Download terminal-card.svg">
+                                <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                                <span class="hidden sm:inline">Download</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Main Interactive Canvas View -->
+                <div
+                    class="flex-1 overflow-auto relative p-2 sm:p-6 flex items-center justify-center min-h-[360px] sm:min-h-[500px]">
+
+                    <!-- Live Interactive Preview Panel -->
+                    <div id="preview-panel"
+                        class="transition-all duration-300 rounded-2xl p-3.5 sm:p-8 flex items-center justify-center relative shadow-inner border ui-border bg-[radial-gradient(var(--ui-grid-dot)_1px,transparent_1px)] [background-size:16px_16px] ui-bg max-w-full overflow-x-auto min-h-[360px] sm:min-h-[670px]">
+                        <div id="svg-wrapper" class="drop-shadow-2xl flex items-center justify-center shrink-0">
+                            <!-- SVG element dynamic injection -->
+                        </div>
+                    </div>
+
+                    <!-- Code View Mode -->
+                    <div id="code-panel" class="w-full h-full max-w-3xl mx-auto flex flex-col hidden">
+                        <div class="flex items-center justify-between pb-2 text-xs ui-text-muted font-mono">
+                            <span id="code-filename-size">terminal-card.svg (0.00 KB)</span>
+                            <span>Valid SVG / XML Format</span>
+                        </div>
+                        <pre id="code-content"
+                            class="ui-bg ui-text-soft p-4 rounded-xl border ui-border font-mono text-xs overflow-auto flex-1 select-all whitespace-pre leading-relaxed"></pre>
+                    </div>
+
+                </div>
+
+                <!-- Footer Info Bar -->
+                <div
+                    class="ui-surface border-t ui-border px-4 py-2 flex items-center justify-between text-xs ui-text-muted font-mono shrink-0">
+                    <div class="flex items-center gap-4">
+                        <span class="flex items-center gap-1.5">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                            <span id="dimension-text">Render: 460 x 650px</span>
+                        </span>
+                        <span class="hidden sm:inline ui-text-faint">|</span>
+                        <span class="hidden sm:inline" id="size-text">Size: 0.00 KB</span>
+                    </div>
+                    <a href="https://github.com/dvrdnz/asset-forge/tree/main/examples" target="_blank"
+                        rel="noopener noreferrer"
+                        class="flex items-center gap-1.5 ui-text-subtle text-[11px] hover:ui-text transition-colors group">
+                        <i data-lucide="github" class="w-3.5 h-3.5 group-hover:text-blue-400 transition-colors"></i>
+                        <span>asset-forge/examples</span>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t ui-border-80 ui-bg py-6 px-4 text-center text-xs ui-text-subtle mt-auto">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-4 ui-text-muted">
+                <a href="https://docs.github.com/en/account-and-profile/how-tos/profile-customization/managing-your-profile-readme" target="_blank" rel="noreferrer"
+                    class="hover:ui-text flex items-center gap-1 transition-colors">
+                    <i data-lucide="github" class="w-3.5 h-3.5"></i>
+                    <span>GitHub Profile Ready</span>
+                </a>
+                <span class="hidden sm:inline ui-text-faint">|</span>
+                <a href="https://github.com/dvrdnz/asset-forge/tree/main/generators/terminal-card" target="_blank" rel="noreferrer"
+                    class="hover:ui-text flex items-center gap-1 transition-colors">
+                    <i data-lucide="code-2" class="w-3.5 h-3.5"></i>
+                    <span>asset-forge/terminal-card</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Export Modal -->
+    <div id="export-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="export-modal-title">
+        <div class="ui-surface border ui-border rounded-2xl w-full max-w-lg p-6 shadow-2xl relative">
+            <button type="button" data-onclick="close-modal" data-modal-id="export-modal" aria-label="Close modal"
+                class="absolute top-4 right-4 ui-text-muted hover:ui-text-strong p-1 rounded-md hover:ui-surface-muted">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <h2 id="export-modal-title" class="text-lg font-bold ui-text-strong mb-2 flex items-center gap-2">
+                <i data-lucide="download" class="w-5 h-5 text-blue-500"></i> Export Options
+            </h2>
+            <p class="text-sm ui-text-muted mb-6">Choose how you want to implement this SVG in your GitHub README.</p>
+
+            <div class="space-y-4">
+                <button type="button" data-onclick="download-svg"
+                    class="w-full flex items-center justify-center gap-2 ui-surface-muted hover:ui-control ui-text py-3 rounded-xl border ui-border-strong transition-colors font-medium text-sm">
+                    <i data-lucide="file-code" class="w-4 h-4 text-emerald-400"></i> Download terminal-card.svg
+                </button>
+
+                <div class="relative mt-4">
+                    <div class="flex justify-between items-end mb-2">
+                        <label class="text-xs font-semibold ui-text-soft">HTML Image Tag (For README.md)</label>
+                    </div>
+                    <div class="flex ui-bg border ui-border rounded-lg overflow-hidden">
+                        <input type="text" readonly id="embed-snippet-input"
+                            value='<img src="terminal-card.svg" width="460" alt="Terminal Card" />'
+                            class="flex-1 bg-transparent px-3 py-2 text-sm ui-text-soft font-mono outline-none">
+                        <button type="button" id="embed-snippet-copy" data-onclick="copy-text" aria-live="polite"
+                            data-copy-text="<img src=&quot;terminal-card.svg&quot; width=&quot;460&quot; alt=&quot;Terminal Card&quot; />"
+                            class="ui-surface-muted hover:ui-control px-4 text-sm font-medium ui-text transition-colors border-l ui-border-strong">Copy</button>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <div class="flex justify-between items-end mb-2">
+                        <label class="text-xs font-semibold ui-text-soft">Raw SVG Code</label>
+                    </div>
+                    <div class="flex ui-bg border ui-border rounded-lg overflow-hidden">
+                        <input type="text" readonly value="<svg viewBox=..."
+                            class="flex-1 bg-transparent px-3 py-2 text-sm ui-text-subtle font-mono outline-none italic"
+                            id="dummy-svg-input">
+                        <button type="button" data-onclick="copy-svg-code" aria-live="polite"
+                            class="bg-blue-600 hover:bg-blue-500 px-4 text-sm font-medium text-white transition-colors">Copy
+                            Code</button>
+                    </div>
+                </div>
+
+                <div class="relative border-t ui-border pt-4 mt-2">
+                    <div class="flex items-center justify-between mb-2">
+                        <label class="text-xs font-semibold ui-text-soft flex items-center gap-1.5">
+                            <i data-lucide="github" class="w-3.5 h-3.5"></i>
+                            Update via GitHub Action
+                        </label>
+                        <span class="text-[10px] ui-text-subtle">Token lives only in RAM</span>
+                    </div>
+                    <p class="text-[10px] ui-text-subtle mb-2 leading-relaxed">
+                        Triggers a workflow via <code class="ui-text-muted">workflow_dispatch</code>. The actual commit
+                        happens in the runner with <code class="ui-text-muted">GITHUB_TOKEN</code> &mdash; the token
+                        here only needs <code class="ui-text-muted">Actions: Read and write</code> permission, no repo
+                        content write access. The workflow file must already exist in the repo (see <code
+                            class="ui-text-muted">update-svg.yml</code>).
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-2 mb-2">
+                        <input aria-label="owner/repo" type="text" id="push-owner-repo" placeholder="owner/repo"
+                            class="ui-bg border ui-border rounded-lg px-3 py-2 text-xs ui-text font-mono focus:outline-none focus:border-emerald-500">
+                        <input aria-label="branch" type="text" id="push-branch" placeholder="branch" value="main"
+                            class="ui-bg border ui-border rounded-lg px-3 py-2 text-xs ui-text font-mono focus:outline-none focus:border-emerald-500">
+                    </div>
+                    <input aria-label="Workflow file" type="text" id="push-workflow" placeholder="Workflow file"
+                        value="update-svg.yml"
+                        class="w-full ui-bg border ui-border rounded-lg px-3 py-2 text-xs ui-text font-mono focus:outline-none focus:border-emerald-500 mb-2">
+                    <input aria-label="Path in repo" type="text" id="push-path" placeholder="Path in repo"
+                        value="assets/generated/terminal-card.svg"
+                        class="w-full ui-bg border ui-border rounded-lg px-3 py-2 text-xs ui-text font-mono focus:outline-none focus:border-emerald-500 mb-2">
+                    <input aria-label="Commit message" type="text" id="push-commit-msg" placeholder="Commit message"
+                        value="Update terminal-card.svg via generator"
+                        class="w-full ui-bg border ui-border rounded-lg px-3 py-2 text-xs ui-text focus:outline-none focus:border-emerald-500 mb-2">
+                    <input aria-label="Fine-grained PAT (Permission: Actions – Read and write)" type="password"
+                        id="push-token" data-oninput="set-push-token"
+                        placeholder="Fine-grained PAT (Permission: Actions – Read and write)" autocomplete="off"
+                        class="w-full ui-bg border ui-border rounded-lg px-3 py-2 text-xs ui-text font-mono focus:outline-none focus:border-emerald-500 mb-2">
+
+                    <button type="button" data-onclick="push-to-github" id="push-btn"
+                        class="w-full bg-emerald-600 hover:bg-emerald-500 text-white py-2.5 rounded-xl text-sm font-medium flex items-center justify-center gap-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-emerald-600">
+                        <i data-lucide="upload-cloud" class="w-4 h-4"></i>
+                        <span id="push-btn-text">Trigger workflow</span>
+                    </button>
+                    <p id="push-status" class="text-[11px] mt-2 ui-text-muted"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application JavaScript Logic -->
+    <script>
+
+        window.lucide = {
+            icons: { "terminal": "<path d=\"M12 19h8\"></path><path d=\"m4 17 6-6-6-6\"></path>", "palette": "<path d=\"M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z\"></path><circle cx=\"13.5\" cy=\"6.5\" r=\".5\" fill=\"currentColor\"></circle><circle cx=\"17.5\" cy=\"10.5\" r=\".5\" fill=\"currentColor\"></circle><circle cx=\"6.5\" cy=\"12.5\" r=\".5\" fill=\"currentColor\"></circle><circle cx=\"8.5\" cy=\"7.5\" r=\".5\" fill=\"currentColor\"></circle>", "sparkles": "<path d=\"M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z\"></path><path d=\"M20 2v4\"></path><path d=\"M22 4h-4\"></path><circle cx=\"4\" cy=\"20\" r=\"2\"></circle>", "moon": "<path d=\"M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401\"></path>", "sun": "<circle cx=\"12\" cy=\"12\" r=\"4\"></circle><path d=\"M12 2v2\"></path><path d=\"M12 20v2\"></path><path d=\"m4.93 4.93 1.41 1.41\"></path><path d=\"m17.66 17.66 1.41 1.41\"></path><path d=\"M2 12h2\"></path><path d=\"M20 12h2\"></path><path d=\"m6.34 17.66-1.41 1.41\"></path><path d=\"m19.07 4.93-1.41 1.41\"></path>", "file-json": "<path d=\"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z\"></path><path d=\"M14 2v5a1 1 0 0 0 1 1h5\"></path><path d=\"M10 12a1 1 0 0 0-1 1v1a1 1 0 0 1-1 1 1 1 0 0 1 1 1v1a1 1 0 0 0 1 1\"></path><path d=\"M14 18a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1 1 1 0 0 1-1-1v-1a1 1 0 0 0-1-1\"></path>", "refresh-cw": "<path d=\"M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8\"></path><path d=\"M21 3v5h-5\"></path><path d=\"M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16\"></path><path d=\"M8 16H3v5\"></path>", "download": "<path d=\"M12 15V3\"></path><path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\"></path><path d=\"m7 10 5 5 5-5\"></path>", "git-commit": "<circle cx=\"12\" cy=\"12\" r=\"3\"></circle><line x1=\"3\" x2=\"9\" y1=\"12\" y2=\"12\"></line><line x1=\"15\" x2=\"21\" y1=\"12\" y2=\"12\"></line>", "eye": "<path d=\"M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0\"></path><circle cx=\"12\" cy=\"12\" r=\"3\"></circle>", "code-2": "<path d=\"m18 16 4-4-4-4\"></path><path d=\"m6 8-4 4 4 4\"></path><path d=\"m14.5 4-5 16\"></path>", "layers": "<path d=\"M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z\"></path><path d=\"M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12\"></path><path d=\"M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17\"></path>", "zoom-out": "<circle cx=\"11\" cy=\"11\" r=\"8\"></circle><line x1=\"21\" x2=\"16.65\" y1=\"21\" y2=\"16.65\"></line><line x1=\"8\" x2=\"14\" y1=\"11\" y2=\"11\"></line>", "zoom-in": "<circle cx=\"11\" cy=\"11\" r=\"8\"></circle><line x1=\"21\" x2=\"16.65\" y1=\"21\" y2=\"16.65\"></line><line x1=\"11\" x2=\"11\" y1=\"8\" y2=\"14\"></line><line x1=\"8\" x2=\"14\" y1=\"11\" y2=\"11\"></line>", "rotate-ccw": "<path d=\"M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8\"></path><path d=\"M3 3v5h5\"></path>", "copy": "<rect width=\"14\" height=\"14\" x=\"8\" y=\"8\" rx=\"2\" ry=\"2\"></rect><path d=\"M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2\"></path>", "github": "<path d=\"M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4\"></path><path d=\"M9 18c-4.51 2-5-2-7-2\"></path>", "x": "<path d=\"M18 6 6 18\"></path><path d=\"m6 6 12 12\"></path>", "file-code": "<path d=\"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z\"></path><path d=\"M14 2v5a1 1 0 0 0 1 1h5\"></path><path d=\"M10 12.5 8 15l2 2.5\"></path><path d=\"m14 12.5 2 2.5-2 2.5\"></path>", "upload-cloud": "<path d=\"M12 13v8\"></path><path d=\"M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242\"></path><path d=\"m8 17 4-4 4 4\"></path>", "type": "<path d=\"M12 4v16\"></path><path d=\"M4 7V5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2\"></path><path d=\"M9 20h6\"></path>", "plus": "<path d=\"M5 12h14\"></path><path d=\"M12 5v14\"></path>", "chevron-up": "<path d=\"m18 15-6-6-6 6\"></path>", "chevron-down": "<path d=\"m6 9 6 6 6-6\"></path>", "trash-2": "<path d=\"M10 11v6\"></path><path d=\"M14 11v6\"></path><path d=\"M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6\"></path><path d=\"M3 6h18\"></path><path d=\"M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2\"></path>", "activity": "<path d=\"M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2\"></path>", "message-square": "<path d=\"M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z\"></path>", "check": "<path d=\"M20 6 9 17l-5-5\"></path>" },
+            createIcons: function () {
+                document.querySelectorAll('[data-lucide]').forEach(el => {
+                    const name = el.getAttribute('data-lucide');
+                    const svgContent = window.lucide.icons[name];
+                    if (svgContent) {
+                        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                        svg.innerHTML = svgContent;
+                        Array.from(el.attributes).forEach(attr => {
+                            if (attr.name !== 'data-lucide' && attr.name !== 'class') {
+                                svg.setAttribute(attr.name, attr.value);
+                            }
+                        });
+                        svg.setAttribute('width', '24');
+                        svg.setAttribute('height', '24');
+                        svg.setAttribute('viewBox', '0 0 24 24');
+                        svg.setAttribute('fill', 'none');
+                        svg.setAttribute('stroke', 'currentColor');
+                        svg.setAttribute('stroke-width', '2');
+                        svg.setAttribute('stroke-linecap', 'round');
+                        svg.setAttribute('stroke-linejoin', 'round');
+
+                        let classes = 'lucide lucide-' + name;
+                        if (el.className) {
+                            classes = el.className + ' ' + classes;
+                        }
+                        svg.setAttribute('class', classes);
+
+                        el.parentNode.replaceChild(svg, el);
+                    }
+                });
+            }
+        };
+        function escapeXML(str) {
+            if (str === null || str === undefined) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&apos;');
+        }
+
+        function safeSvgNumber(value, fallback, { min, max } = {}) {
+            let n = typeof value === 'number' ? value : parseFloat(value);
+            if (!Number.isFinite(n)) n = fallback;
+            if (typeof min === 'number') n = Math.max(min, n);
+            if (typeof max === 'number') n = Math.min(max, n);
+            return n;
+        }
+
+        function clampText(str, maxLen) {
+            if (typeof str !== 'string') return str;
+            return str.length > maxLen ? str.slice(0, maxLen) : str;
+        }
+
+        function safeCreateIcons() {
+            lucide.createIcons();
+        }
+
+        const STORAGE_KEY = 'terminal_card_config_v2';
+        const PREFIX_PRESETS = ['» ', '$ ', '> ', '✔ ', '⚡ ', '➜ '];
+
+        const THEMES = {
+            'github-dark': { name: 'GitHub Dark', bg: '#0d1117', text: '#c9d1d9', accent: '#58a6ff', success: '#7ee787', border: '#30363d' },
+            'github-light': { name: 'GitHub Light', bg: '#ffffff', text: '#24292f', accent: '#0969da', success: '#1a7f37', border: '#d0d7de' },
+            'dracula': { name: 'Dracula', bg: '#282a36', text: '#f8f8f2', accent: '#bd93f9', success: '#50fa7b', border: '#44475a' },
+            'nord': { name: 'Nord', bg: '#2e3440', text: '#d8dee9', accent: '#88c0d0', success: '#a3be8c', border: '#4c566a' },
+            'tokyo-night': { name: 'Tokyo Night', bg: '#1a1b26', text: '#a9b1d6', accent: '#7aa2f7', success: '#9ece6a', border: '#24283b' },
+            'cyberpunk': { name: 'Cyberpunk', bg: '#120e24', text: '#fdf0d5', accent: '#ff0055', success: '#00ff9f', border: '#2d1b4e' }
+        };
+
+        const FONT_OPTIONS = [
+            { label: 'Consolas / SFMono (Default)', value: "Consolas, 'SFMono-Regular', monospace" },
+            { label: 'Fira Code', value: "'Fira Code', monospace" },
+            { label: 'JetBrains Mono', value: "'JetBrains Mono', monospace" },
+            { label: 'Courier New', value: "'Courier New', Courier, monospace" }
+        ];
+
+        window.addEventListener('error', function (event) {
+            console.error('Global error caught:', event.error || event.message);
+        });
+        window.addEventListener('unhandledrejection', function (event) {
+            console.error('Unhandled promise rejection:', event.reason);
+        });
+
+        const DEFAULT_CONFIG = {
+            activeTab: 'terminal',
+            theme: 'github-dark',
+            width: 460,
+            height: 650,
+            windowTitle: 'Terminal Profile',
+            windowTitleColor: '#8b949e',
+            terminalBorderColor: '#2563eb',
+            windowDotStyle: 'mac',
+            lines: [
+                { id: '1', prefix: '» ', text: 'Initializing environment...', color: '#c9d1d9' },
+                { id: '2', prefix: '» ', text: 'Loading dependencies...', color: '#c9d1d9' },
+                { id: '3', prefix: '✔ ', text: 'System ready.', color: '#7ee787' },
+                { id: '4', prefix: '⚡ ', text: 'Waiting for commands.', color: '#58a6ff' }
+            ],
+            showCursor: true,
+            cursorPrefix: '»',
+            cursorColor: '#2563eb',
+            cursorBlinkDuration: 1.1,
+            showTimeline: true,
+            activeNode: { title: 'Current Mission', status: 'In Progress', color: '#7ee787' },
+            historyNodes: [
+                { title: 'Project Alpha', status: 'completed', icon: 'lock', opacity: 0.8 },
+                { title: 'Setup Repo', status: 'completed', icon: 'none', opacity: 0.5 }
+            ],
+            footerText: 'Powered by github/dvrdnz.',
+            fontFamily: "Consolas, 'SFMono-Regular', monospace",
+            transparentBackground: true,
+            canvasBackgroundColor: '#0d1117',
+            sparkles: { enabled: true, color: '#2563eb', opacity: 0.45 },
+            themeColorBindings: {
+                activeNodeColor: true,
+                terminalBorderColor: true,
+                cursorColor: true,
+                sparkleColor: true
+            }
+        };
+
+        const SVG_LAYOUT = {
+            marginX: 50,
+            terminalY: 60,
+            terminalMinWidth: 360,
+            terminalMinHeight: 200,
+            terminalHeaderHeight: 30,
+            terminalRadius: 14,
+            lineStartOffsetY: 50,
+            lineGap: 20,
+            footerBottomOffset: 38,
+            minFooterGap: 82,
+            railTopGap: 2,
+            activeNodeOffsetY: 38,
+            historyNodeGapY: 75,
+            historyStartOffsetY: 95,
+            connectorStartOffsetX: 14,
+            connectorEndOffsetX: 24,
+            nodeCardOffsetX: 24,
+            activeCardHeight: 42,
+            historyCardHeight: 38,
+            nodeCardMinWidth: 156,
+            nodeCardPaddingX: 12,
+            rightMargin: 50,
+            estimatedMonoCharWidth: 7.1
+        };
+
+        // Backstop ceiling for the computed canvas size (see resolveSVGConfig).
+        // Comfortably above what the text-length caps and MAX_TERMINAL_LINES/
+        // MAX_HISTORY_NODES produce in practice (roughly ~770px wide,
+        // ~1.7k tall at the new maximums) -- this exists as an independent
+        // safety net, not as the primary defense.
+        const MAX_CARD_WIDTH = 1400;
+        const MAX_CARD_HEIGHT = 2200;
+
+        const THEME_MANAGED_DEFAULTS = {
+            terminalBorderColor: ['#2563eb'],
+            cursorColor: ['#2563eb'],
+            sparkleColor: ['#2563eb'],
+            activeNodeColor: ['#7ee787']
+        };
+
+        Object.values(THEMES).forEach(theme => {
+            THEME_MANAGED_DEFAULTS.terminalBorderColor.push(theme.accent);
+            THEME_MANAGED_DEFAULTS.cursorColor.push(theme.accent);
+            THEME_MANAGED_DEFAULTS.sparkleColor.push(theme.accent);
+            THEME_MANAGED_DEFAULTS.activeNodeColor.push(theme.success);
+        });
+
+        const THEME_BOUND_CONFIG_KEYS = {
+            terminalBorderColor: 'terminalBorderColor',
+            cursorColor: 'cursorColor',
+            sparkleColor: 'sparkleColor',
+            activeNodeColor: 'activeNodeColor'
+        };
+
+        function isThemeManagedValue(key, value) {
+            const valueString = String(value || '').toLowerCase();
+            return THEME_MANAGED_DEFAULTS[key]?.some(item => String(item).toLowerCase() === valueString) || false;
+        }
+        const TEMPLATES = [
+            {
+                id: 'default',
+                name: 'Standard Terminal Setup',
+                config: {
+                    windowTitle: 'Terminal Profile',
+                    lines: [
+                        { id: '1', prefix: '» ', text: 'Initializing environment...', color: '#c9d1d9' },
+                        { id: '2', prefix: '» ', text: 'Loading dependencies...', color: '#c9d1d9' },
+                        { id: '3', prefix: '✔ ', text: 'System ready.', color: '#7ee787' },
+                        { id: '4', prefix: '⚡ ', text: 'Waiting for commands.', color: '#58a6ff' }
+                    ],
+                    activeNode: { title: 'Current Mission', status: 'In Progress', color: '#7ee787' },
+                    historyNodes: [
+                        { title: 'Project Alpha', status: 'completed', icon: 'lock', opacity: 0.8 },
+                        { title: 'Setup Repo', status: 'completed', icon: 'none', opacity: 0.5 }
+                    ],
+                    footerText: 'Powered by github/dvrdnz'
+                }
+            },
+            {
+                id: 'cicd',
+                name: 'CI/CD Pipeline Build',
+                config: {
+                    windowTitle: 'gh-actions --workflow',
+                    lines: [
+                        { id: '1', prefix: '➜ ', text: 'git checkout main', color: '#58a6ff' },
+                        { id: '2', prefix: '⚡ ', text: 'npm run test -- --coverage', color: '#c9d1d9' },
+                        { id: '3', prefix: '✔ ', text: '142 tests passed (100%)', color: '#7ee787' },
+                        { id: '4', prefix: '➜ ', text: 'docker build -t app:latest .', color: '#a5d6ff' },
+                        { id: '5', prefix: '✔ ', text: 'Deployed to Kubernetes cluster', color: '#7ee787' }
+                    ],
+                    activeNode: { title: 'Production Release', status: 'v2.4.0 Live', color: '#7ee787' },
+                    historyNodes: [
+                        { title: 'Staging Integration', status: 'passed', icon: 'none', opacity: 0.8 },
+                        { title: 'Security Audit', status: 'passed', icon: 'lock', opacity: 0.6 }
+                    ],
+                    footerText: 'Automated CI/CD Pipeline Status'
+                }
+            },
+            {
+                id: 'fullstack',
+                name: 'Full-Stack Engineer',
+                config: {
+                    windowTitle: 'dev-environment ~ zsh',
+                    lines: [
+                        { id: '1', prefix: '➜ ', text: 'whoami', color: '#58a6ff' },
+                        { id: '2', prefix: '» ', text: 'Full-Stack Engineer & Architect', color: '#ffa657' },
+                        { id: '3', prefix: '➜ ', text: 'stack --list', color: '#58a6ff' },
+                        { id: '4', prefix: '✔ ', text: 'TypeScript • React • Node • Postgres', color: '#7ee787' }
+                    ],
+                    activeNode: { title: 'Building SaaS Platform', status: 'Sprint 14', color: '#58a6ff' },
+                    historyNodes: [
+                        { title: 'Design System', status: 'shipped', icon: 'none', opacity: 0.8 },
+                        { title: 'Database Migration', status: 'completed', icon: 'none', opacity: 0.5 }
+                    ],
+                    footerText: 'Crafting clean code & user experiences.'
+                }
+            },
+            {
+                id: 'aiml',
+                name: 'AI / ML Research Lab',
+                config: {
+                    windowTitle: 'python train.py --gpu 0',
+                    lines: [
+                        { id: '1', prefix: '$ ', text: 'import torch, transformers', color: '#a5d6ff' },
+                        { id: '2', prefix: '$ ', text: 'model.fit(dataset, epochs=100)', color: '#c9d1d9' },
+                        { id: '3', prefix: '⚡ ', text: 'Epoch 100/100 | loss: 0.0142', color: '#ffa657' },
+                        { id: '4', prefix: '✔ ', text: 'Weights saved to checkpoint.pt', color: '#7ee787' }
+                    ],
+                    activeNode: { title: 'LLM Fine-Tuning', status: 'Validation Loss 0.012', color: '#7ee787' },
+                    historyNodes: [
+                        { title: 'Data Preprocessing', status: '10M Samples', icon: 'none', opacity: 0.8 },
+                        { title: 'Architecture Benchmarks', status: 'evaluated', icon: 'none', opacity: 0.5 }
+                    ],
+                    footerText: 'Deep Learning & Intelligent Systems'
+                }
+            },
+            {
+                id: 'maintainer',
+                name: 'Open Source Maintainer',
+                config: {
+                    windowTitle: 'gh-cli --oss-dashboard',
+                    lines: [
+                        { id: '1', prefix: '➜ ', text: 'gh issue list --state open', color: '#58a6ff' },
+                        { id: '2', prefix: '✔ ', text: '0 critical bugs remaining', color: '#7ee787' },
+                        { id: '3', prefix: '⚡ ', text: 'Merged 28 PRs this week', color: '#d2a8ff' },
+                        { id: '4', prefix: '➜ ', text: 'npm publish --tag latest', color: '#ffa657' }
+                    ],
+                    activeNode: { title: 'v3.0 Architecture', status: 'RFC Open', color: '#d2a8ff' },
+                    historyNodes: [
+                        { title: 'v1.0 Minor Release', status: 'published', icon: 'none', opacity: 0.8 },
+                        { title: 'Community Guidelines', status: 'updated', icon: 'lock', opacity: 0.6 }
+                    ],
+                    footerText: 'Building open source for everyone.'
+                }
+            }
+        ];
+
+        function cloneConfig(cfg) {
+            return JSON.parse(JSON.stringify(cfg));
+        }
+
+        let config = cloneConfig(DEFAULT_CONFIG);
+        let currentTheme = config.theme;
+        let viewMode = 'preview';
+        let previewBg = 'grid';
+        let zoomLevel = 1.0;
+
+        function normalizeConfig(loadedCfg) {
+            if (!loadedCfg) return cloneConfig(DEFAULT_CONFIG);
+
+            const normalized = {
+                ...cloneConfig(DEFAULT_CONFIG),
+                ...loadedCfg
+            };
+
+            normalized.theme = THEMES[normalized.theme] ? normalized.theme : DEFAULT_CONFIG.theme;
+            normalized.activeNode = {
+                ...cloneConfig(DEFAULT_CONFIG.activeNode),
+                ...(loadedCfg.activeNode || {})
+            };
+            normalized.sparkles = {
+                ...cloneConfig(DEFAULT_CONFIG.sparkles),
+                ...(loadedCfg.sparkles || {})
+            };
+            normalized.themeColorBindings = loadedCfg.themeColorBindings
+                ? { ...cloneConfig(DEFAULT_CONFIG.themeColorBindings), ...loadedCfg.themeColorBindings }
+                : {
+                    terminalBorderColor: isThemeManagedValue('terminalBorderColor', normalized.terminalBorderColor),
+                    cursorColor: isThemeManagedValue('cursorColor', normalized.cursorColor),
+                    sparkleColor: isThemeManagedValue('sparkleColor', normalized.sparkles.color),
+                    activeNodeColor: isThemeManagedValue('activeNodeColor', normalized.activeNode.color)
+                };
+            normalized.historyNodes = Array.isArray(loadedCfg.historyNodes)
+                ? loadedCfg.historyNodes.map(node => ({
+                    title: 'Milestone',
+                    status: 'pending',
+                    icon: 'none',
+                    opacity: 0.5,
+                    ...(node || {})
+                }))
+                : cloneConfig(DEFAULT_CONFIG.historyNodes);
+
+            // Convert simple string lines array to structured objects if legacy format
+            if (Array.isArray(normalized.lines)) {
+                normalized.lines = normalized.lines.map((line, idx) => {
+                    if (typeof line === 'string') {
+                        let prefix = '» ';
+                        let text = line;
+                        if (line.startsWith('»')) {
+                            prefix = '» ';
+                            text = line.replace(/^»\s*/, '');
+                        } else if (line.startsWith('$')) {
+                            prefix = '$ ';
+                            text = line.replace(/^\$\s*/, '');
+                        }
+                        return {
+                            id: String(Date.now() + idx) + '-' + Math.random().toString(36).substring(2, 9),
+                            prefix: prefix,
+                            text: text,
+                            color: '#c9d1d9'
+                        };
+                    }
+                    return {
+                        id: line.id || (String(Date.now() + idx) + '-' + Math.random().toString(36).substring(2, 9)),
+                        prefix: line.prefix || '',
+                        text: line.text || '',
+                        color: line.color || '#c9d1d9'
+                    };
+                });
+            } else {
+                normalized.lines = cloneConfig(DEFAULT_CONFIG.lines);
+            }
+
+            if (!normalized.windowDotStyle) normalized.windowDotStyle = 'mac';
+            if (!normalized.windowTitleColor) normalized.windowTitleColor = '#8b949e';
+            if (!normalized.terminalBorderColor) normalized.terminalBorderColor = THEMES[normalized.theme]?.accent || '#2563eb';
+            if (normalized.showCursor === undefined) normalized.showCursor = true;
+            if (!normalized.cursorPrefix) normalized.cursorPrefix = '»';
+            if (!normalized.cursorColor) normalized.cursorColor = normalized.terminalBorderColor || '#2563eb';
+
+            const parsedBlink = Number(normalized.cursorBlinkDuration);
+            normalized.cursorBlinkDuration = (Number.isNaN(parsedBlink) || parsedBlink <= 0) ? 1.1 : parsedBlink;
+
+            if (!normalized.fontFamily) normalized.fontFamily = "Consolas, 'SFMono-Regular', monospace";
+            if (normalized.transparentBackground === undefined) normalized.transparentBackground = true;
+            if (!normalized.canvasBackgroundColor) normalized.canvasBackgroundColor = '#0d1117';
+
+            const parsedOpacity = Number(normalized.sparkles.opacity);
+            normalized.sparkles.opacity = (Number.isNaN(parsedOpacity) || parsedOpacity < 0 || parsedOpacity > 1) ? 0.45 : parsedOpacity;
+
+            // Numeric bounds for width and height (prevents NaN cascade in resolveSVGConfig)
+            const parseDimension = (val, defaultVal, maxVal) => {
+                const parsed = Number(val);
+                if (Number.isNaN(parsed) || parsed < 100) return defaultVal;
+                return Math.min(parsed, maxVal);
+            };
+            normalized.width = parseDimension(normalized.width, DEFAULT_CONFIG.width, MAX_CARD_WIDTH);
+            normalized.height = parseDimension(normalized.height, DEFAULT_CONFIG.height, MAX_CARD_HEIGHT);
+
+            // Hard length caps, independent of the editor's maxlength=
+            // attributes. Those only stop typing/pasting in an actual
+            // browser; this stops an oversized value that arrived any other
+            // way (e.g. localStorage edited via devtools) from ever
+            // reaching generateSVG(), where an unbounded string
+            // currently has no upper limit and
+            // directly inflates the computed card width/height.
+            normalized.windowTitle = clampText(normalized.windowTitle, 60);
+            normalized.footerText = clampText(normalized.footerText, 100);
+            normalized.cursorPrefix = clampText(normalized.cursorPrefix, 4);
+            normalized.activeNode.title = clampText(normalized.activeNode.title, 40);
+            normalized.activeNode.status = clampText(normalized.activeNode.status, 40);
+            normalized.lines = normalized.lines.map(line => ({
+                ...line,
+                prefix: clampText(line.prefix, 10),
+                text: clampText(line.text, 80)
+            }));
+            normalized.historyNodes = normalized.historyNodes.map(node => ({
+                ...node,
+                title: clampText(node.title, 40),
+                status: clampText(node.status, 40)
+            }));
+
+            return normalized;
+        }
+
+        try {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                config = normalizeConfig(JSON.parse(saved));
+                currentTheme = config.theme;
+            }
+        } catch (e) {
+            console.warn('Failed to load saved configuration:', e);
+            config = cloneConfig(DEFAULT_CONFIG);
+            currentTheme = config.theme;
+        }
+
+        let _saveConfigTimeout;
+        function saveConfig() {
+            clearTimeout(_saveConfigTimeout);
+            _saveConfigTimeout = setTimeout(() => {
+                try {
+                    config.theme = THEMES[config.theme] ? config.theme : currentTheme;
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
+                } catch (e) {
+                    console.warn('Failed to save config:', e);
+                }
+            }, 300);
+        }
+
+        let _renderTimeout;
+        function updateConfigField(key, value) {
+            const bindingKey = THEME_BOUND_CONFIG_KEYS[key];
+            if (bindingKey && config.themeColorBindings) config.themeColorBindings[bindingKey] = false;
+            config[key] = value;
+            saveConfig();
+
+            clearTimeout(_renderTimeout);
+            _renderTimeout = setTimeout(() => {
+                renderPreviewComponent();
+            }, 16); // roughly 1 frame
+        }
+
+        function handleReset() {
+            if (confirm('Reset editor to default card configuration?')) {
+                config = cloneConfig(DEFAULT_CONFIG);
+                currentTheme = config.theme;
+                zoomLevel = 1.0;
+                previewBg = 'grid';
+                viewMode = 'preview';
+                localStorage.removeItem(STORAGE_KEY);
+                renderApp();
+            }
+        }
+
+        const MAX_TERMINAL_LINES = 20;
+
+        function handleAddTerminalLine() {
+            // Count is unbounded in the data model, but the layout math in
+            // resolveSVGConfig() has no cap of its own -- each extra line
+            // adds a fixed row height with no ceiling. This stops the
+            // canvas from growing indefinitely just by clicking "Add Line"
+            // repeatedly (independent of the per-field text length caps
+            // in normalizeConfig()).
+            if (config.lines.length >= MAX_TERMINAL_LINES) {
+                alert(`Maximum of ${MAX_TERMINAL_LINES} lines reached.`);
+                return;
+            }
+            config.lines.push({
+                id: String(Date.now()) + '-' + Math.random().toString(36).substring(2, 9),
+                prefix: '» ',
+                text: 'New command or output...',
+                color: '#c9d1d9'
+            });
+            saveConfig();
+            renderEditor();
+            renderPreviewComponent();
+        }
+
+        function handleUpdateTerminalLine(id, field, value) {
+            const line = config.lines.find(l => l.id === id);
+            if (line) {
+                line[field] = value;
+                saveConfig();
+                renderPreviewComponent();
+            }
+        }
+
+        function setViewMode(mode) {
+            viewMode = mode;
+            const previewPanel = document.getElementById('preview-panel');
+            const codePanel = document.getElementById('code-panel');
+            const bgToggles = document.getElementById('bg-toggles-container');
+            const btnPreview = document.getElementById('btn-view-preview');
+            const btnCode = document.getElementById('btn-view-code');
+
+            if (mode === 'preview') {
+                previewPanel?.classList.remove('hidden');
+                codePanel?.classList.add('hidden');
+                bgToggles?.classList.remove('hidden');
+
+                btnPreview?.classList.add('bg-blue-600', 'text-white', 'shadow-sm');
+                btnPreview?.classList.remove('ui-text-muted', 'hover:ui-text', 'hover:ui-control-50');
+
+                btnCode?.classList.remove('bg-blue-600', 'text-white', 'shadow-sm');
+                btnCode?.classList.add('ui-text-muted', 'hover:ui-text', 'hover:ui-control-50');
+            } else {
+                previewPanel?.classList.add('hidden');
+                codePanel?.classList.remove('hidden');
+                bgToggles?.classList.add('hidden');
+
+                btnCode?.classList.add('bg-blue-600', 'text-white', 'shadow-sm');
+                btnCode?.classList.remove('ui-text-muted', 'hover:ui-text', 'hover:ui-control-50');
+
+                btnPreview?.classList.remove('bg-blue-600', 'text-white', 'shadow-sm');
+                btnPreview?.classList.add('ui-text-muted', 'hover:ui-text', 'hover:ui-control-50');
+            }
+        }
+
+        function setPreviewBg(bg) {
+            previewBg = bg;
+            const panel = document.getElementById('preview-panel');
+            const btnGrid = document.getElementById('btn-bg-grid');
+            const btnGhDark = document.getElementById('btn-bg-gh-dark');
+            const btnGhLight = document.getElementById('btn-bg-gh-light');
+
+            if (btnGrid) btnGrid.className = "p-1.5 rounded-lg text-xs transition-colors ui-text-muted hover:ui-text";
+            if (btnGhDark) btnGhDark.className = "px-2 py-1 rounded-lg text-xs font-mono transition-colors ui-text-muted hover:ui-text";
+            if (btnGhLight) btnGhLight.className = "px-2 py-1 rounded-lg text-xs font-mono transition-colors ui-text-muted hover:ui-text";
+
+            if (!panel) return;
+
+            if (bg === 'grid') {
+                panel.className = "transition-all duration-300 rounded-2xl p-3.5 sm:p-8 flex items-center justify-center relative shadow-inner border ui-border bg-[radial-gradient(var(--ui-grid-dot)_1px,transparent_1px)] [background-size:16px_16px] ui-bg max-w-full overflow-x-auto min-h-[360px] sm:min-h-[670px]";
+                if (btnGrid) btnGrid.className = "p-1.5 rounded-lg text-xs transition-colors bg-blue-600/30 text-blue-400 border border-blue-500/40";
+            } else if (bg === 'gh-dark') {
+                panel.className = "transition-all duration-300 rounded-2xl p-3.5 sm:p-8 flex items-center justify-center relative shadow-inner border ui-border bg-[#0d1117] max-w-full overflow-x-auto min-h-[360px] sm:min-h-[670px]";
+                if (btnGhDark) btnGhDark.className = "px-2 py-1 rounded-lg text-xs font-mono transition-colors bg-blue-600 text-white font-semibold";
+            } else if (bg === 'gh-light') {
+                panel.className = "transition-all duration-300 rounded-2xl p-3.5 sm:p-8 flex items-center justify-center relative shadow-inner border ui-border bg-[#ffffff] max-w-full overflow-x-auto min-h-[360px] sm:min-h-[670px]";
+                if (btnGhLight) btnGhLight.className = "px-2 py-1 rounded-lg text-xs font-mono transition-colors bg-blue-600 text-white font-semibold";
+            }
+        }
+
+        function adjustZoom(delta) {
+            zoomLevel = Math.min(Math.max(0.4, zoomLevel + delta), 2.0);
+            const display = document.getElementById('zoom-display');
+            if (display) display.innerText = `${Math.round(zoomLevel * 100)}%`;
+            const wrapper = document.getElementById('svg-wrapper');
+            if (wrapper) wrapper.style.transform = `scale(${zoomLevel})`;
+        }
+
+        function resetZoom() {
+            zoomLevel = 1.0;
+            const display = document.getElementById('zoom-display');
+            if (display) display.innerText = '100%';
+            const wrapper = document.getElementById('svg-wrapper');
+            if (wrapper) wrapper.style.transform = 'scale(1)';
+        }
+
+        let initialPinchDist = null;
+        let initialZoom = 1.0;
+
+        function initPinchToZoom() {
+            const panel = document.getElementById('preview-panel');
+            if (!panel) return;
+
+            panel.addEventListener('touchstart', (e) => {
+                if (e.touches.length === 2) {
+                    e.preventDefault();
+                    initialPinchDist = Math.hypot(
+                        e.touches[0].clientX - e.touches[1].clientX,
+                        e.touches[0].clientY - e.touches[1].clientY
+                    );
+                    initialZoom = zoomLevel;
+                }
+            }, { passive: false });
+
+            panel.addEventListener('touchmove', (e) => {
+                if (e.touches.length === 2 && initialPinchDist) {
+                    e.preventDefault();
+                    const currentDist = Math.hypot(
+                        e.touches[0].clientX - e.touches[1].clientX,
+                        e.touches[0].clientY - e.touches[1].clientY
+                    );
+                    const factor = currentDist / initialPinchDist;
+                    zoomLevel = Math.min(Math.max(0.3, initialZoom * factor), 2.5);
+                    const display = document.getElementById('zoom-display');
+                    if (display) display.innerText = `${Math.round(zoomLevel * 100)}%`;
+                    const wrapper = document.getElementById('svg-wrapper');
+                    if (wrapper) wrapper.style.transform = `scale(${zoomLevel})`;
+                }
+            }, { passive: false });
+
+            panel.addEventListener('touchend', (e) => {
+                if (e.touches.length < 2) {
+                    initialPinchDist = null;
+                }
+            }, { passive: true });
+        }
+
+        function handleCopyCode() {
+            const svgCode = generateSVG();
+            const btn = document.getElementById('quick-copy-btn');
+            if (!btn) return;
+            copyToClipboard(svgCode, btn);
+        }
+
+        function handleDownloadSVG() {
+            const svgCode = generateSVG();
+            const blob = new Blob([svgCode], { type: 'image/svg+xml;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'terminal-card.svg';
+            link.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Push-to-GitHub: token lives ONLY in this variable (RAM).
+        // Never written to saveConfig()/localStorage, so it's
+        // gone after every reload, and explicitly cleared on modal close.
+        let pushToken = '';
+
+        function utf8ToBase64(str) {
+            const bytes = new TextEncoder().encode(str);
+            const CHUNK = 8192;
+            let binary = '';
+            for (let i = 0; i < bytes.length; i += CHUNK) {
+                binary += String.fromCharCode(...bytes.subarray(i, i + CHUNK));
+            }
+            return btoa(binary);
+        }
+
+        async function handlePushToGitHub() {
+            const ownerRepo = document.getElementById('push-owner-repo')?.value.trim();
+            const branch = document.getElementById('push-branch')?.value.trim() || 'main';
+            const workflowFile = document.getElementById('push-workflow')?.value.trim() || 'update-svg.yml';
+            const path = document.getElementById('push-path')?.value.trim() || 'assets/generated/terminal-card.svg';
+            const commitMessage = document.getElementById('push-commit-msg')?.value.trim() || 'Update terminal-card.svg via generator';
+            const statusEl = document.getElementById('push-status');
+            const btnTextEl = document.getElementById('push-btn-text');
+            const btnEl = document.getElementById('push-btn');
+
+            if (btnEl?.disabled) return; // request already in flight, ignore repeat clicks
+
+            // ── Validate owner/repo ──
+            if (!ownerRepo || !/^[a-zA-Z0-9._-]+\/[a-zA-Z0-9._-]+$/.test(ownerRepo)) {
+                if (statusEl) { statusEl.textContent = 'Invalid repo format. Use "owner/repo" (alphanumeric, dots, hyphens, underscores only).'; statusEl.className = 'text-[11px] mt-2 text-rose-400'; }
+                return;
+            }
+
+            // ── Validate branch name ──
+            if (!/^[a-zA-Z0-9/_.-]+$/.test(branch) || /\.\./.test(branch) || /[~^:\\]/.test(branch)) {
+                if (statusEl) { statusEl.textContent = 'Invalid branch name. Avoid "..", "~", "^", ":", or backslashes.'; statusEl.className = 'text-[11px] mt-2 text-rose-400'; }
+                return;
+            }
+
+            // ── Validate workflow filename ──
+            if (!/^[a-zA-Z0-9._-]+\.(yml|yaml)$/.test(workflowFile)) {
+                if (statusEl) { statusEl.textContent = 'Workflow file must end with .yml or .yaml and contain only safe characters.'; statusEl.className = 'text-[11px] mt-2 text-rose-400'; }
+                return;
+            }
+
+            // ── Validate target path ──
+            if (!/^assets\/generated\/[A-Za-z0-9_-]+\.svg$/.test(path)) {
+                if (statusEl) { statusEl.textContent = 'Invalid target path. Must be in the format: assets/generated/<name>.svg'; statusEl.className = 'text-[11px] mt-2 text-rose-400'; }
+                return;
+            }
+
+            // ── Validate commit message ──
+            if (!commitMessage || commitMessage.length > 500 || /\x00/.test(commitMessage)) {
+                if (statusEl) { statusEl.textContent = 'Commit message must be 1–500 characters with no null bytes.'; statusEl.className = 'text-[11px] mt-2 text-rose-400'; }
+                return;
+            }
+
+            if (!pushToken) {
+                if (statusEl) { statusEl.textContent = 'No token set.'; statusEl.className = 'text-[11px] mt-2 text-rose-400'; }
+                return;
+            }
+
+            // Trigger workflow_dispatch (needs "Actions: Read and write" PAT permission).
+            const safeOwnerRepo = ownerRepo.split('/').map(encodeURIComponent).join('/');
+            const dispatchUrl = `https://api.github.com/repos/${safeOwnerRepo}/actions/workflows/${encodeURIComponent(workflowFile)}/dispatches`;
+            const headers = {
+                'Authorization': `Bearer ${pushToken}`,
+                'Accept': 'application/vnd.github+json',
+                'Content-Type': 'application/json'
+            };
+
+            if (btnEl) btnEl.disabled = true;
+            if (btnTextEl) btnTextEl.textContent = 'Triggering...';
+            if (statusEl) { statusEl.textContent = ''; statusEl.className = 'text-[11px] mt-2 ui-text-muted'; }
+
+            try {
+                const svgCode = generateSVG();
+                const encodedSvg = utf8ToBase64(svgCode);
+
+                // workflow_dispatch inputs have an undocumented ~65k char ceiling.
+                const GITHUB_DISPATCH_SIZE_WARN_THRESHOLD = 60000;
+                if (encodedSvg.length > GITHUB_DISPATCH_SIZE_WARN_THRESHOLD) {
+                    if (statusEl) {
+                        statusEl.textContent = `Warning: base64-encoded SVG is ${encodedSvg.length.toLocaleString()} characters, which may exceed GitHub's undocumented workflow_dispatch input size limit (community reports suggest ~65,535 characters total across all inputs). This isn't an officially documented limit, so it's a precaution, not a guarantee -- the trigger below may still fail, or may still succeed.`;
+                        statusEl.className = 'text-[11px] mt-2 text-amber-400';
+                    }
+                }
+
+                const body = {
+                    ref: branch,
+                    inputs: {
+                        svg_content: encodedSvg,
+                        target_path: path,
+                        commit_message: commitMessage
+                    }
+                };
+
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 30000);
+
+                const resp = await fetch(dispatchUrl, {
+                    method: 'POST',
+                    headers,
+                    body: JSON.stringify(body),
+                    signal: controller.signal
+                });
+                clearTimeout(timeoutId);
+
+                // 204 No Content or 200 on success.
+                if (resp.ok) {
+                    if (statusEl) { statusEl.textContent = `Workflow "${workflowFile}" triggered on ${ownerRepo}@${branch}.`; statusEl.className = 'text-[11px] mt-2 text-emerald-400'; }
+                } else {
+                    const errData = await resp.json().catch(() => ({}));
+                    const dispatchError = new Error(errData.message || `Dispatch failed (${resp.status})`);
+                    dispatchError.status = resp.status;
+                    throw dispatchError;
+                }
+            } catch (err) {
+                if (statusEl) {
+                    let message = err.message || 'An unknown error occurred.';
+                    if (err.name === 'AbortError') {
+                        message = 'Request timed out after 30 seconds. Please check your network connection.';
+                    } else if (err instanceof TypeError && message.includes('Failed to fetch')) {
+                        message = 'Network error: Failed to reach GitHub API. Check your internet connection or browser extensions.';
+                    } else if (err.status) {
+                        const ghMsg = err.message !== `Dispatch failed (${err.status})` ? ` (GitHub says: "${err.message}")` : '';
+                        switch (err.status) {
+                            case 401:
+                                message = `Unauthorized (401). Your token is invalid or expired.${ghMsg}`;
+                                break;
+                            case 403:
+                                message = `Forbidden (403). Rate limit exceeded, or token lacks permissions. Wait a moment or check your token scope.${ghMsg}`;
+                                break;
+                            case 404:
+                                message = `Not Found (404). Repo/workflow not found on this branch, or token lacks access.${ghMsg}`;
+                                break;
+                            case 422:
+                                message = `Unprocessable (422). Workflow may lack 'workflow_dispatch' trigger, or inputs are invalid.${ghMsg}`;
+                                break;
+                            default:
+                                message = `GitHub API Error (${err.status}).${ghMsg}`;
+                        }
+                    }
+                    statusEl.textContent = message;
+                    statusEl.className = 'text-[11px] mt-2 text-rose-400';
+                }
+            } finally {
+                if (btnTextEl) btnTextEl.textContent = 'Trigger workflow';
+                if (btnEl) btnEl.disabled = false;
+
+                clearPushToken();
+            }
+        }
+
+        function renderPreviewComponent() {
+            const resolved = resolveSVGConfig(config);
+            const svgCode = generateSVG(resolved.cfg);
+            const wrapper = document.getElementById('svg-wrapper');
+            if (wrapper) {
+                wrapper.innerHTML = svgCode;
+                wrapper.style.width = `${resolved.cfg.width}px`;
+                wrapper.style.height = `${resolved.cfg.height}px`;
+                wrapper.style.transform = `scale(${zoomLevel})`;
+            }
+
+            const codeContent = document.getElementById('code-content');
+            if (codeContent) {
+                codeContent.textContent = svgCode;
+            }
+
+            const bytes = new Blob([svgCode]).size;
+            const kb = (bytes / 1024).toFixed(2);
+
+            const sizeText = document.getElementById('size-text');
+            if (sizeText) sizeText.innerText = `Size: ${kb} KB`;
+
+            const codeFilenameSize = document.getElementById('code-filename-size');
+            if (codeFilenameSize) codeFilenameSize.innerText = `terminal-card.svg (${kb} KB)`;
+
+            const dimensionText = document.getElementById('dimension-text');
+            if (dimensionText) dimensionText.innerText = `Render: ${resolved.cfg.width} x ${resolved.cfg.height}px`;
+
+            const dummyInput = document.getElementById('dummy-svg-input');
+            if (dummyInput) dummyInput.value = svgCode;
+
+            // Update embed snippet width + src path dynamically.
+            const pushPathInput = document.getElementById('push-path');
+            const srcPath = (pushPathInput && pushPathInput.value.trim()) || 'terminal-card.svg';
+            const w = resolved.cfg.width;
+            const snippetValue = `<img src="${srcPath}" width="${w}" alt="Terminal Card" />`;
+            const embedInput = document.getElementById('embed-snippet-input');
+            if (embedInput) embedInput.value = snippetValue;
+            const embedCopyBtn = document.getElementById('embed-snippet-copy');
+            if (embedCopyBtn) embedCopyBtn.dataset.copyText = snippetValue;
+        }
+
+        function measureTextWidth(text, charWidth = SVG_LAYOUT.estimatedMonoCharWidth) {
+            return String(text || '').length * charWidth;
+        }
+
+        function getRenderableLineCount(lines) {
+            return (lines || []).filter(line => {
+                const textVal = typeof line === 'string' ? line : (line.text || '');
+                const prefixVal = typeof line === 'object' ? (line.prefix || '') : '';
+                return textVal.trim() !== '' || prefixVal.trim() !== '';
+            }).length;
+        }
+
+        function resolveSVGConfig(inputCfg = config) {
+            const cfg = normalizeConfig(cloneConfig(inputCfg));
+            cfg.theme = THEMES[cfg.theme] ? cfg.theme : DEFAULT_CONFIG.theme;
+            const t = THEMES[cfg.theme] || THEMES[DEFAULT_CONFIG.theme];
+            const layout = SVG_LAYOUT;
+            const centerX = Math.round(cfg.width / 2);
+            const terminalContentWidth = Math.max(
+                layout.terminalMinWidth,
+                measureTextWidth(cfg.windowTitle, 6.4) + 150,
+                ...cfg.lines.map(line => {
+                    const prefix = typeof line === 'object' ? (line.prefix || '') : '';
+                    const text = typeof line === 'string' ? line : (line.text || '');
+                    return measureTextWidth(`${prefix}${text}`) + 32;
+                })
+            );
+            const terminalWidth = Math.ceil(terminalContentWidth);
+            const terminalX = Math.max(layout.marginX, centerX - Math.round(terminalWidth / 2));
+            const lineCount = getRenderableLineCount(cfg.lines);
+            const cursorRows = cfg.showCursor ? 1 : 0;
+            const terminalHeight = Math.max(
+                layout.terminalMinHeight,
+                layout.terminalHeaderHeight + layout.lineStartOffsetY + ((lineCount + cursorRows) * layout.lineGap) + 28
+            );
+            const terminalBottom = layout.terminalY + terminalHeight;
+            const timelineTop = terminalBottom + layout.railTopGap;
+            const railX = centerX;
+            const activeNodeY = timelineTop + layout.activeNodeOffsetY;
+            const historyStartY = activeNodeY + layout.historyStartOffsetY;
+            const historyCount = cfg.showTimeline ? cfg.historyNodes.length : 0;
+            const lastNodeY = historyCount > 0
+                ? historyStartY + ((historyCount - 1) * layout.historyNodeGapY)
+                : activeNodeY;
+            const trailEndY = cfg.showTimeline ? lastNodeY + 45 : terminalBottom;
+            const timelineBottom = cfg.showTimeline ? trailEndY : terminalBottom;
+            const footerY = Math.max(timelineBottom + layout.minFooterGap, cfg.height - layout.footerBottomOffset);
+            const resolvedHeight = Math.max(DEFAULT_CONFIG.height, Math.ceil(footerY + layout.footerBottomOffset));
+            // Only compute node card width when timeline is visible.
+            let nodeCardWidth = 0;
+            let neededRight = 0;
+            if (cfg.showTimeline) {
+                nodeCardWidth = Math.max(
+                    layout.nodeCardMinWidth,
+                    measureTextWidth(cfg.activeNode.title, 6.8) + (layout.nodeCardPaddingX * 2),
+                    measureTextWidth(cfg.activeNode.status, 5.9) + (layout.nodeCardPaddingX * 2),
+                    ...cfg.historyNodes.flatMap(node => [
+                        measureTextWidth(node.title, 6.6) + (layout.nodeCardPaddingX * 2),
+                        measureTextWidth(node.status, 5.7) + (layout.nodeCardPaddingX * 2) + (node.icon === 'lock' ? 18 : 0)
+                    ])
+                );
+                neededRight = railX + layout.nodeCardOffsetX + nodeCardWidth + layout.rightMargin;
+            }
+            const neededLeft = terminalX + terminalWidth + layout.marginX;
+            const resolvedWidth = Math.max(cfg.width, Math.ceil(neededRight), Math.ceil(neededLeft));
+            // Backstop cap.
+            cfg.width = Math.min(resolvedWidth, MAX_CARD_WIDTH);
+            cfg.height = Math.min(resolvedHeight, MAX_CARD_HEIGHT);
+
+            return {
+                cfg,
+                theme: t,
+                layout: {
+                    ...layout,
+                    centerX,
+                    terminalX,
+                    terminalY: layout.terminalY,
+                    terminalWidth,
+                    terminalHeight,
+                    terminalBottom,
+                    terminalHeaderBottom: layout.terminalY + layout.terminalHeaderHeight,
+                    railX: centerX,
+                    timelineTop,
+                    activeNodeY,
+                    historyStartY,
+                    lastNodeY,
+                    trailEndY,
+                    footerY,
+                    nodeCardWidth: Math.ceil(nodeCardWidth)
+                }
+            };
+        }
+
+        function generateSVG(cfg = config) {
+            const resolved = resolveSVGConfig(cfg);
+            cfg = resolved.cfg;
+            const t = resolved.theme;
+            const layout = resolved.layout;
+            const borderColor = cfg.terminalBorderColor || t.accent;
+            const titleColor = cfg.windowTitleColor || '#8b949e';
+            const fontFam = escapeXML(cfg.fontFamily || "Consolas, 'SFMono-Regular', monospace");
+            const themeKey = cfg.theme || DEFAULT_CONFIG.theme;
+            const headerFill = themeKey === 'github-light' ? '#f6f8fa' : '#161b22';
+            const shadowColor = themeKey === 'github-light' ? '#000000' : '#0d1117';
+            const shadowOpacity = themeKey === 'github-light' ? '0.1' : '0.25';
+
+            let bgRectHTML = '';
+            if (!cfg.transparentBackground) {
+                bgRectHTML = `<rect width="${cfg.width}" height="${cfg.height}" fill="${escapeXML(cfg.canvasBackgroundColor || t.bg)}" rx="16"/>\n`;
+            }
+
+            let linesHTML = '';
+            let currentY = layout.terminalY + layout.lineStartOffsetY;
+
+            cfg.lines.forEach(line => {
+                const textVal = typeof line === 'string' ? line : (line.text || '');
+                const prefixVal = typeof line === 'object' ? (line.prefix || '') : '';
+                const lineTextColor = typeof line === 'object' && line.color ? line.color : t.text;
+
+                if (textVal.trim() !== '' || prefixVal.trim() !== '') {
+                    let lineContentHTML = '';
+                    if (prefixVal) {
+                        lineContentHTML += `<tspan fill="${escapeXML(borderColor)}">${escapeXML(prefixVal)}</tspan>`;
+                    }
+                    lineContentHTML += `<tspan fill="${escapeXML(lineTextColor)}">${escapeXML(textVal)}</tspan>`;
+
+                    linesHTML += `<text x="${layout.terminalX + 16}" y="${currentY}" font-family="${fontFam}" font-size="11">${lineContentHTML}</text>\n`;
+                    currentY += layout.lineGap;
+                }
+            });
+
+            if (cfg.showCursor) {
+                const cursorPrefix = cfg.cursorPrefix || '';
+                const cursorColor = cfg.cursorColor || borderColor;
+                const dur = safeSvgNumber(cfg.cursorBlinkDuration, 1.1, { min: 0.1, max: 10 });
+
+                let cursorX = layout.terminalX + 16;
+                if (cursorPrefix) {
+                    linesHTML += `<text x="${cursorX}" y="${currentY + 10}" font-family="${fontFam}" font-size="12.5" fill="${escapeXML(cursorColor)}">${escapeXML(cursorPrefix)}</text>\n`;
+                    cursorX += Math.max(14, measureTextWidth(cursorPrefix, 7));
+                }
+
+                linesHTML += `
+                    <rect x="${cursorX}" y="${currentY - 1}" width="7" height="13" fill="${escapeXML(cursorColor)}">
+                        <animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;0.5;0.5;1;1" dur="${dur}s" repeatCount="indefinite"/>
+                    </rect>
+                `;
+            }
+
+            let dotsHTML = '';
+            if (cfg.windowDotStyle === 'mac') {
+                dotsHTML = `
+                    <circle cx="${layout.terminalX + 18}" cy="${layout.terminalY + 15}" r="5" fill="#ff5f56"/>
+                    <circle cx="${layout.terminalX + 36}" cy="${layout.terminalY + 15}" r="5" fill="#ffbd2e"/>
+                    <circle cx="${layout.terminalX + 54}" cy="${layout.terminalY + 15}" r="5" fill="#27c93f"/>
+                `;
+            } else {
+                dotsHTML = `
+                    <circle cx="${layout.terminalX + 18}" cy="${layout.terminalY + 15}" r="5" fill="#6e7681"/>
+                    <circle cx="${layout.terminalX + 36}" cy="${layout.terminalY + 15}" r="5" fill="#6e7681"/>
+                    <circle cx="${layout.terminalX + 54}" cy="${layout.terminalY + 15}" r="5" fill="#6e7681"/>
+                `;
+            }
+
+            let railHTML = '';
+            if (cfg.showTimeline) {
+                const cardX = layout.railX + layout.nodeCardOffsetX;
+                const textX = cardX + layout.nodeCardPaddingX;
+                railHTML += `<line x1="${layout.railX}" y1="${layout.timelineTop}" x2="${layout.railX}" y2="${layout.trailEndY}" stroke="${t.border}" stroke-width="2"/>`;
+
+                railHTML += `
+                    <circle cx="${layout.railX}" cy="${layout.activeNodeY}" r="14" fill="${t.bg}" stroke="${escapeXML(cfg.activeNode.color)}" stroke-width="3"/>
+                    <circle cx="${layout.railX}" cy="${layout.activeNodeY}" r="5" fill="${escapeXML(cfg.activeNode.color)}"/>
+                    <line x1="${layout.railX + layout.connectorStartOffsetX}" y1="${layout.activeNodeY}" x2="${layout.railX + layout.connectorEndOffsetX}" y2="${layout.activeNodeY}" stroke="${escapeXML(cfg.activeNode.color)}" stroke-width="2"/>
+                    <rect x="${cardX}" y="${layout.activeNodeY - 20}" width="${layout.nodeCardWidth}" height="${layout.activeCardHeight}" rx="8" fill="${t.bg}" stroke="${escapeXML(cfg.activeNode.color)}" stroke-width="1.4"/>
+                    <text x="${textX}" y="${layout.activeNodeY - 2}" font-family="${fontFam}" font-size="12.5" fill="${escapeXML(cfg.activeNode.color)}">${escapeXML(cfg.activeNode.title)}</text>
+                    <text x="${textX}" y="${layout.activeNodeY + 15}" font-family="${fontFam}" font-size="10.5" fill="#8b949e">${escapeXML(cfg.activeNode.status)}</text>
+                `;
+
+                let nodeY = layout.historyStartY;
+                cfg.historyNodes.forEach(node => {
+                    let iconHTML = '';
+                    if (node.icon === 'lock') {
+                        iconHTML = `<use href="#lockIcon" x="${textX + 4}" y="${nodeY + 11}"/>`;
+
+                    }
+
+                    const statusX = node.icon === 'lock' ? textX + 14 : textX;
+                    const statusY = nodeY + 14;
+
+                    railHTML += `
+                        <g opacity="${safeSvgNumber(node.opacity, 0.5, { min: 0, max: 1 })}">
+                            <circle cx="${layout.railX}" cy="${nodeY}" r="10" fill="${t.bg}" stroke="#6e7681" stroke-width="2"/>
+                            <circle cx="${layout.railX}" cy="${nodeY}" r="3.5" fill="#6e7681"/>
+                            <line x1="${layout.railX + 10}" y1="${nodeY}" x2="${layout.railX + layout.connectorEndOffsetX}" y2="${nodeY}" stroke="${t.border}" stroke-width="2"/>
+                            <rect x="${cardX}" y="${nodeY - 19}" width="${layout.nodeCardWidth}" height="${layout.historyCardHeight}" rx="8" fill="${t.bg}" stroke="${t.border}" stroke-width="1.2" />
+                            <text x="${textX}" y="${nodeY - 1}" font-family="${fontFam}" font-size="12" fill="#8b949e">${escapeXML(node.title)}</text>
+                            ${iconHTML}
+                            <text x="${statusX}" y="${statusY}" font-family="${fontFam}" font-size="10" fill="#6e7681">${escapeXML(node.status)}</text>
+                        </g>
+                    `;
+                    nodeY += layout.historyNodeGapY;
+                });
+
+                railHTML += `
+                    <circle cx="${layout.railX}" cy="${layout.trailEndY - 30}" r="2" fill="${t.border}"/>
+                    <circle cx="${layout.railX}" cy="${layout.trailEndY - 20}" r="2" fill="${t.border}"/>
+                    <circle cx="${layout.railX}" cy="${layout.trailEndY - 10}" r="2" fill="${t.border}"/>
+                `;
+            }
+
+            let sparklesHTML = '';
+            if (cfg.sparkles?.enabled) {
+                const sparkleColor = escapeXML(cfg.sparkles.color || borderColor);
+                const sparkleOpacity = safeSvgNumber(cfg.sparkles.opacity, 0.45, { min: 0, max: 1 });
+                sparklesHTML = `
+  <g fill="${sparkleColor}" opacity="${sparkleOpacity}">
+    <path transform="translate(${Math.max(28, layout.terminalX + 30)},48) scale(0.9)" d="M0,-9 C1,-3 3,-1 9,0 C3,1 1,3 0,9 C-1,3 -3,1 -9,0 C-3,-1 -1,-3 0,-9 Z"/>
+    <path transform="translate(${cfg.width - 75},48) scale(0.6)" d="M0,-9 C1,-3 3,-1 9,0 C3,1 1,3 0,9 C-1,3 -3,1 -9,0 C-3,-1 -1,-3 0,-9 Z"/>
+    <path transform="translate(${Math.max(34, layout.terminalX + 46)},${cfg.height - 30}) scale(0.7)" d="M0,-9 C1,-3 3,-1 9,0 C3,1 1,3 0,9 C-1,3 -3,1 -9,0 C-3,-1 -1,-3 0,-9 Z"/>
+    <path transform="translate(${cfg.width - 92},${cfg.height - 34}) scale(1)" d="M0,-9 C1,-3 3,-1 9,0 C3,1 1,3 0,9 C-1,3 -3,1 -9,0 C-3,-1 -1,-3 0,-9 Z"/>
+  </g>
+                `;
+            }
+
+            return `<svg viewBox="0 0 ${cfg.width} ${cfg.height}" width="${cfg.width}" height="${cfg.height}" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="svgTitle svgDesc">
+  <title id="svgTitle">${escapeXML(cfg.windowTitle || 'Terminal Card')}</title>
+  <desc id="svgDesc">${escapeXML(cfg.footerText || 'A generated SVG terminal card with command lines and timeline.')}</desc>
+  <style>
+    /* Respect prefers-reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; }
+      animate, animateTransform { display: none; }
+    }
+  </style>
+  <defs>
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="${shadowColor}" flood-opacity="${shadowOpacity}"/>
+    </filter>
+    <clipPath id="clipTerm"><rect x="${layout.terminalX}" y="${layout.terminalY}" width="${layout.terminalWidth}" height="${layout.terminalHeight}" rx="${layout.terminalRadius}"/></clipPath>
+    <g id="lockIcon">
+      <rect x="-4" y="-1" width="8" height="6" rx="1" fill="none" stroke="#6e7681" stroke-width="1.2"/>
+      <path d="M-2,-1 v-2 a2,2 0 0 1 4,0 v2" fill="none" stroke="#6e7681" stroke-width="1.2"/>
+    </g>
+  </defs>
+
+  ${bgRectHTML}${sparklesHTML}
+  <rect x="${layout.terminalX}" y="${layout.terminalY}" width="${layout.terminalWidth}" height="${layout.terminalHeight}" rx="${layout.terminalRadius}" fill="${t.bg}" stroke="${escapeXML(borderColor)}" stroke-width="2" filter="url(#softShadow)"/>
+  <g clip-path="url(#clipTerm)">
+    <rect x="${layout.terminalX}" y="${layout.terminalY}" width="${layout.terminalWidth}" height="${layout.terminalHeaderHeight}" fill="${headerFill}"/>
+  </g>
+  <line x1="${layout.terminalX}" y1="${layout.terminalHeaderBottom}" x2="${layout.terminalX + layout.terminalWidth}" y2="${layout.terminalHeaderBottom}" stroke="${t.border}" stroke-width="1"/>
+  
+  ${dotsHTML}
+
+  <text x="${layout.terminalX + (layout.terminalWidth / 2)}" y="${layout.terminalY + 19}" text-anchor="middle" font-family="${fontFam}" font-size="11.5" fill="${escapeXML(titleColor)}">${escapeXML(cfg.windowTitle)}</text>
+  
+  ${linesHTML}
+  ${railHTML}
+  <text x="${cfg.width / 2}" y="${layout.footerY}" text-anchor="middle" font-family="${fontFam}" font-style="italic" font-size="12" fill="#8b949e">${escapeXML(cfg.footerText)}</text>
+</svg>`.trim();
+        }
+
+        function updateSparkles(key, value) {
+            if (!config.sparkles) config.sparkles = { enabled: true, color: '#2563eb', opacity: 0.45 };
+            if (key === 'color' && config.themeColorBindings) config.themeColorBindings.sparkleColor = false;
+            config.sparkles[key] = value;
+            saveConfig();
+            renderPreviewComponent();
+        }
+
+        function handleDeleteTerminalLine(id) {
+            config.lines = config.lines.filter(line => line.id !== id);
+            saveConfig();
+            renderEditor();
+            renderPreviewComponent();
+        }
+
+        function handleMoveTerminalLine(index, direction) {
+            const lines = [...config.lines];
+            const targetIndex = direction === 'up' ? index - 1 : index + 1;
+            if (targetIndex < 0 || targetIndex >= lines.length) return;
+            const temp = lines[index];
+            lines[index] = lines[targetIndex];
+            lines[targetIndex] = temp;
+            config.lines = lines;
+            saveConfig();
+            renderEditor();
+            renderPreviewComponent();
+        }
+
+        const EDITOR_TEMPLATES = {
+            terminal: () => `
+                <div class="space-y-6">
+                    <div class="flex items-center gap-2 border-b ui-border pb-3">
+                        <i data-lucide="terminal" class="w-5 h-5 text-blue-400"></i>
+                        <h2 class="text-sm font-semibold ui-text-strong uppercase tracking-wider">
+                            Terminal Window & Console Lines
+                        </h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="input-windowTitle" class="block text-xs font-medium ui-text-soft mb-1">Window Title</label>
+                            <input id="input-windowTitle"
+                                type="text"
+                                value="${escapeXML(config.windowTitle)}"
+                                data-oninput="set-field" data-field="windowTitle"
+                                placeholder="Window Title"
+                                maxlength="60"
+                                class="w-full ui-surface border ui-border-strong-80 rounded-xl px-3 py-2 text-sm ui-text-strong focus:outline-none focus:border-blue-500 transition-colors"
+                            >
+                        </div>
+                        <div>
+                            <label for="input-windowTitleColor" class="block text-xs font-medium ui-text-soft mb-1">Title Text Color</label>
+                            <div class="flex items-center gap-2">
+                                <input id="input-windowTitleColor"
+                                    type="color"
+                                    value="${escapeXML(config.windowTitleColor)}"
+                                    data-onchange="commit-color" data-oninput="sync-color-input" data-field="windowTitleColor"
+                                    class="w-9 h-9 ui-surface border ui-border-strong rounded-xl p-1 cursor-pointer"
+                                >
+                                <input
+                                    type="text"
+                                    value="${escapeXML(config.windowTitleColor)}"
+                                    pattern="^#[0-9A-Fa-f]{6}$"
+                                    data-oninput="commit-color" data-field="windowTitleColor" data-sync-sibling="prev"
+                                    class="flex-1 ui-surface border ui-border-strong-80 rounded-xl px-3 py-2 text-xs font-mono ui-text-strong uppercase"
+                                >
+                            </div>
+                        </div>
+                        <div>
+                            <label for="input-terminalBorderColor" class="block text-xs font-medium ui-text-soft mb-1">Window Border Color</label>
+                            <div class="flex items-center gap-2">
+                                <input id="input-terminalBorderColor"
+                                    type="color"
+                                    value="${escapeXML(config.terminalBorderColor)}"
+                                    data-onchange="commit-color" data-oninput="sync-color-input" data-field="terminalBorderColor"
+                                    class="w-9 h-9 ui-surface border ui-border-strong rounded-xl p-1 cursor-pointer"
+                                >
+                                <input
+                                    type="text"
+                                    value="${escapeXML(config.terminalBorderColor)}"
+                                    pattern="^#[0-9A-Fa-f]{6}$"
+                                    data-oninput="commit-color" data-field="terminalBorderColor" data-sync-sibling="prev"
+                                    class="flex-1 ui-surface border ui-border-strong-80 rounded-xl px-3 py-2 text-xs font-mono ui-text-strong uppercase"
+                                >
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium ui-text-soft mb-1">Window Control Dots Style</label>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button
+                                    type="button"
+                                    data-onclick="set-field" data-field="windowDotStyle" data-value="github" data-rerender
+                                    class="px-3 py-2 rounded-xl text-xs font-medium border flex items-center justify-center gap-2 transition-all ${config.windowDotStyle === 'github'
+                    ? 'bg-blue-600/20 border-blue-500 text-blue-300 font-semibold'
+                    : 'ui-surface ui-border-strong ui-text-muted hover:ui-text'
+                }"
+                                >
+                                    <div class="flex gap-1">
+                                        <span class="w-2 h-2 rounded-full ui-control-muted"></span>
+                                        <span class="w-2 h-2 rounded-full ui-control-muted"></span>
+                                        <span class="w-2 h-2 rounded-full ui-control-muted"></span>
+                                    </div>
+                                    GitHub Gray
+                                </button>
+
+                                <button
+                                    type="button"
+                                    data-onclick="set-field" data-field="windowDotStyle" data-value="mac" data-rerender
+                                    class="px-3 py-2 rounded-xl text-xs font-medium border flex items-center justify-center gap-2 transition-all ${config.windowDotStyle === 'mac'
+                    ? 'bg-blue-600/20 border-blue-500 text-blue-300 font-semibold'
+                    : 'ui-surface ui-border-strong ui-text-muted hover:ui-text'
+                }"
+                                >
+                                    <div class="flex gap-1">
+                                        <span class="w-2 h-2 rounded-full bg-red-500"></span>
+                                        <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                                        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                    </div>
+                                    macOS Dots
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Console Output Lines List -->
+                    <div class="space-y-3 pt-2">
+                        <div class="flex items-center justify-between">
+                            <label class="text-xs font-semibold ui-text flex items-center gap-1.5" id="label-consoleLines">
+                                <i data-lucide="type" class="w-4 h-4 text-blue-400"></i>
+                                Console Output Lines (${config.lines.length})
+                            </label>
+
+                            <button
+                                type="button"
+                                data-onclick="add-terminal-line"
+                                class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-xs font-medium flex items-center gap-1 transition-colors shadow-sm"
+                            >
+                                <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                                Add Line
+                            </button>
+                        </div>
+
+                        <div class="space-y-2 max-h-[300px] overflow-y-auto pr-1">
+                            ${config.lines.map((line, index) => `
+                                <div class="p-3 ui-surface-80 border ui-border hover:ui-border-strong rounded-xl flex flex-wrap items-center gap-2 transition-colors">
+                                    
+                                    <!-- Prefix Selector -->
+                                    <div class="flex items-center gap-1">
+                                        <select
+                                            data-onchange="update-terminal-line" data-line-id="${escapeXML(line.id)}" data-key="prefix"
+                                            class="ui-bg border ui-border-strong rounded-lg text-xs font-mono px-2 py-1.5 text-blue-400 focus:outline-none cursor-pointer"
+                                        >
+                                            ${PREFIX_PRESETS.map(p => `<option value="${p}" ${line.prefix === p ? 'selected' : ''}>${p}</option>`).join('')}
+                                            <option value="" ${!line.prefix ? 'selected' : ''}>(None)</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Main Text Input -->
+                                    <input
+                                        type="text"
+                                        value="${escapeXML(line.text)}"
+                                        data-oninput="update-terminal-line" data-line-id="${escapeXML(line.id)}" data-key="text"
+                                        placeholder="Line text content..."
+                                        maxlength="80"
+                                        class="flex-1 min-w-[130px] ui-bg border ui-border-strong-80 rounded-lg px-3 py-1.5 text-xs ui-text font-mono focus:outline-none focus:border-blue-500"
+                                    >
+
+                                    <!-- Color Picker -->
+                                    <input
+                                        type="color"
+                                        value="${escapeXML(line.color || '#c9d1d9')}"
+                                        data-onchange="update-terminal-line" data-line-id="${escapeXML(line.id)}" data-key="color"
+                                        class="w-7 h-7 ui-bg border ui-border-strong rounded-lg p-0.5 cursor-pointer"
+                                        title="Line text color"
+                                    >
+
+                                    <!-- Order Controls -->
+                                    <div class="flex items-center gap-0.5">
+                                        <button
+                                            type="button"
+                                            ${index === 0 ? 'disabled' : ''}
+                                            data-onclick="move-terminal-line" data-index="${index}" data-direction="up"
+                                            class="p-1 ui-text-muted hover:ui-text disabled:opacity-30 rounded hover:ui-surface-muted"
+                                            title="Move Up" aria-label="Move Up"
+                                        >
+                                            <i data-lucide="chevron-up" class="w-3.5 h-3.5"></i>
+                                        </button>
+                                        <button
+                                            type="button"
+                                            ${index === config.lines.length - 1 ? 'disabled' : ''}
+                                            data-onclick="move-terminal-line" data-index="${index}" data-direction="down"
+                                            class="p-1 ui-text-muted hover:ui-text disabled:opacity-30 rounded hover:ui-surface-muted"
+                                            title="Move Down" aria-label="Move Down"
+                                        >
+                                            <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+                                        </button>
+                                        <button
+                                            type="button"
+                                            data-onclick="delete-terminal-line" data-line-id="${escapeXML(line.id)}"
+                                            class="p-1 text-rose-400 hover:text-rose-300 rounded hover:bg-rose-500/10 ml-1"
+                                            title="Delete Line" aria-label="Delete Line"
+                                        >
+                                            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Blinking Animated Cursor Settings -->
+                    <div class="p-4 ui-surface-60 border ui-border rounded-xl space-y-3">
+                        <div class="flex items-center justify-between">
+                            <label for="input-showCursor" class="text-xs font-semibold ui-text flex items-center gap-2">
+                                <i data-lucide="activity" class="w-4 h-4 text-emerald-400"></i>
+                                Animated Blinking Cursor (SMIL Animation)
+                            </label>
+
+                            <input id="input-showCursor"
+                                type="checkbox"
+                                ${config.showCursor ? 'checked' : ''}
+                                data-onchange="set-field" data-field="showCursor" data-rerender
+                                class="w-4 h-4 accent-blue-600 rounded cursor-pointer"
+                            >
+                        </div>
+
+                        ${config.showCursor ? `
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                            <div>
+                                <label for="input-cursorPrefix" class="block text-[11px] ui-text-muted mb-1">Cursor Symbol</label>
+                                <input id="input-cursorPrefix"
+                                    type="text"
+                                    value="${escapeXML(config.cursorPrefix)}"
+                                    data-oninput="set-field" data-field="cursorPrefix"
+                                    maxlength="4"
+                                    class="w-full ui-bg border ui-border-strong rounded-lg px-2 py-1 text-xs font-mono ui-text"
+                                >
+                            </div>
+
+                            <div>
+                                <label for="input-cursorColor" class="block text-[11px] ui-text-muted mb-1">Cursor Color</label>
+                                <div class="flex items-center gap-1.5">
+                                    <input id="input-cursorColor"
+                                        type="color"
+                                        value="${escapeXML(config.cursorColor)}"
+                                        data-onchange="commit-color" data-oninput="sync-color-input" data-field="cursorColor"
+                                        class="w-7 h-7 ui-bg border ui-border-strong rounded p-0.5"
+                                    >
+                                    <input
+                                        type="text"
+                                        value="${escapeXML(config.cursorColor)}"
+                                        pattern="^#[0-9A-Fa-f]{6}$"
+                                        data-oninput="commit-color" data-field="cursorColor" data-sync-sibling="prev"
+                                        class="w-24 flex-shrink-0 ui-bg border ui-border-strong rounded px-2 py-1 text-xs font-mono ui-text uppercase"
+                                    >
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="input-cursorBlinkDuration" class="block text-[11px] ui-text-muted mb-1">
+                                    Blink Cycle (${escapeXML(config.cursorBlinkDuration)}s)
+                                </label>
+                                <input id="input-cursorBlinkDuration"
+                                    type="range"
+                                    min="0.5"
+                                    max="2.5"
+                                    step="0.1"
+                                    value="${escapeXML(config.cursorBlinkDuration)}"
+                                    data-oninput="update-cursor-blink-duration"
+                                    class="w-full accent-blue-500 mt-2"
+                                >
+                            </div>
+                        </div>
+                        ` : ''}
+                    </div>
+                </div>
+            `,
+            rail: () => `
+                <div class="space-y-6">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <h3 class="text-lg font-semibold ui-text-strong flex items-center gap-2 mb-1">
+                                <i data-lucide="git-commit" class="w-5 h-5 text-emerald-400"></i> Timeline Rail
+                            </h3>
+                            <p class="text-sm ui-text-muted mb-5">Configure vertical milestone progression nodes.</p>
+                        </div>
+                        <label class="flex items-center gap-2 text-sm ui-text-soft cursor-pointer ui-bg border ui-border px-3 py-1.5 rounded-lg shadow-sm">
+                            <span class="font-medium">Enable Rail</span>
+                            <input type="checkbox" ${config.showTimeline ? 'checked' : ''} data-onchange="set-field" data-field="showTimeline" data-rerender class="accent-blue-600 h-4 w-4 rounded">
+                        </label>
+                    </div>
+
+                    ${config.showTimeline ? `
+                    <div class="space-y-5">
+                        <div class="ui-bg border-l-2 border-l-emerald-400 border-t border-r border-b ui-border rounded-r-xl p-5">
+                            <div class="flex items-center justify-between mb-4">
+                                <h4 class="text-sm font-bold text-emerald-400 flex items-center gap-2 uppercase tracking-wide">
+                                    <div class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(126,231,135,0.6)]"></div>
+                                    Active Node
+                                </h4>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="input-activeNodeTitle" class="block text-xs font-medium ui-text-muted mb-1.5">Node Title</label>
+                                    <input id="input-activeNodeTitle" type="text" value="${escapeXML(config.activeNode.title)}" data-oninput="set-field" data-setter="active-node" data-field="title" maxlength="40" class="w-full ui-surface border ui-border-strong rounded-lg px-3 py-2 text-sm ui-text-strong focus:outline-none focus:border-emerald-400">
+                                </div>
+                                <div>
+                                    <label for="input-activeNodeStatus" class="block text-xs font-medium ui-text-muted mb-1.5">Subtitle / Status</label>
+                                    <input id="input-activeNodeStatus" type="text" value="${escapeXML(config.activeNode.status)}" data-oninput="set-field" data-setter="active-node" data-field="status" maxlength="40" class="w-full ui-surface border ui-border-strong rounded-lg px-3 py-2 text-sm ui-text-strong focus:outline-none focus:border-emerald-400">
+                                </div>
+                                <div>
+                                    <label for="input-activeNodeColor" class="block text-xs font-medium ui-text-muted mb-1.5">Accent Color</label>
+                                    <div class="flex items-center ui-surface border ui-border-strong rounded-lg overflow-hidden">
+                                        <input id="input-activeNodeColor" type="color" value="${escapeXML(config.activeNode.color)}" data-onchange="commit-color" data-oninput="sync-color-input" data-setter="active-node" data-field="color" class="h-9 w-12 p-0.5 bg-transparent border-none cursor-pointer">
+                                        <input type="text" value="${escapeXML(config.activeNode.color)}" pattern="^#[0-9A-Fa-f]{6}$" data-oninput="commit-color" data-setter="active-node" data-field="color" data-sync-sibling="prev" class="w-full bg-transparent px-2 py-2 text-sm ui-text-strong focus:outline-none font-mono uppercase">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- History Nodes -->
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <h4 class="text-sm font-bold ui-text-soft flex items-center gap-2">
+                                    History Nodes <span class="ui-surface-muted ui-text-muted px-2 py-0.5 rounded-full text-xs">${config.historyNodes.length}</span>
+                                </h4>
+                                <button type="button" data-onclick="add-history-node" class="text-xs ui-surface-muted hover:ui-control ui-text px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-colors border ui-border-strong">
+                                    <i data-lucide="plus" class="w-3.5 h-3.5"></i> Add Past Node
+                                </button>
+                            </div>
+                            
+                            <div class="space-y-3">
+                                ${config.historyNodes.map((node, index) => renderHistoryNodeHTML(node, index)).join('')}
+                            </div>
+                        </div>
+                    </div>
+                    ` : `
+                    <div class="ui-bg-50 border ui-border rounded-xl p-8 text-center ui-text-subtle">
+                        <i data-lucide="git-commit" class="w-8 h-8 mx-auto mb-3 opacity-50"></i>
+                        <p>Timeline Rail is disabled.</p>
+                        <p class="text-xs mt-1">Enable it to add visual progression nodes.</p>
+                    </div>
+                    `}
+
+                    <!-- Footer Caption Input -->
+                    <div class="ui-bg border ui-border rounded-xl p-5 mt-6">
+                         <h4 class="text-sm font-bold ui-text-soft flex items-center gap-2 mb-3">
+                            <i data-lucide="message-square" class="w-4 h-4 text-purple-400"></i> Footer Caption
+                        </h4>
+                        <input type="text" value="${escapeXML(config.footerText)}" data-oninput="set-field" data-field="footerText" placeholder="Powered by..." maxlength="100" class="w-full ui-surface border ui-border-strong rounded-lg px-4 py-2.5 text-sm ui-text-strong focus:outline-none focus:border-blue-500 italic">
+                    </div>
+                </div>
+            `,
+            appearance: () => `
+                <div class="space-y-6">
+                    <div class="flex items-center gap-2 border-b ui-border pb-3">
+                        <i data-lucide="palette" class="w-5 h-5 text-indigo-400"></i>
+                        <h2 class="text-sm font-semibold ui-text-strong uppercase tracking-wider">
+                            Appearance, Fonts & Themes
+                        </h2>
+                    </div>
+
+                    <!-- Preset Color Palettes -->
+                    <div class="space-y-3">
+                        <label class="text-xs font-semibold ui-text uppercase tracking-wider">
+                            Preset Color Palettes
+                        </label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            ${Object.keys(THEMES).map(key => {
+                const isSelected = currentTheme === key;
+                const th = THEMES[key];
+                return `
+                                    <button
+                                        type="button"
+                                        data-onclick="apply-theme" data-theme-key="${key}"
+                                        class="p-3 rounded-xl border text-left flex items-start justify-between gap-3 transition-all ${isSelected
+                        ? 'bg-blue-600/15 border-blue-500 shadow-md shadow-blue-500/10'
+                        : 'ui-surface ui-border hover:ui-border-strong'
+                    }"
+                                    >
+                                        <div class="space-y-1">
+                                            <div class="flex items-center gap-2">
+                                                <span class="text-xs font-bold ui-text">${th.name}</span>
+                                                ${isSelected ? '<i data-lucide="check" class="w-3.5 h-3.5 text-blue-400"></i>' : ''}
+                                            </div>
+                                            <p class="text-[11px] ui-text-muted">Standard GitHub theme profile</p>
+                                        </div>
+
+                                        <div class="flex items-center gap-1 shrink-0 mt-0.5">
+                                            <span class="w-3.5 h-3.5 rounded-full border ui-border-strong" data-bg-color="${th.bg}"></span>
+                                            <span class="w-3.5 h-3.5 rounded-full border ui-border-strong" data-bg-color="${th.border}"></span>
+                                            <span class="w-3.5 h-3.5 rounded-full border ui-border-strong" data-bg-color="${th.accent}"></span>
+                                        </div>
+                                    </button>
+                                `;
+            }).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Transparent Background Toggle -->
+                    <div class="p-4 ui-surface-80 border ui-border rounded-2xl space-y-3">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <label for="input-transparentBackground" class="text-xs font-semibold ui-text flex items-center gap-2">
+                                    <i data-lucide="layers" class="w-4 h-4 text-blue-400"></i>
+                                    Transparent Canvas Background
+                                </label>
+                                <p class="text-[11px] ui-text-muted mt-0.5">
+                                    Recommended for GitHub READMEs so the SVG floats seamlessly on dark or light profile pages.
+                                </p>
+                            </div>
+                            <input id="input-transparentBackground"
+                                type="checkbox"
+                                ${config.transparentBackground ? 'checked' : ''}
+                                data-onchange="set-field" data-field="transparentBackground" data-rerender
+                                class="w-4 h-4 accent-blue-600 rounded cursor-pointer shrink-0"
+                            >
+                        </div>
+
+                        ${!config.transparentBackground ? `
+                        <div class="pt-2 border-t ui-border flex items-center gap-3">
+                            <span class="text-xs ui-text-soft">Solid Canvas Background:</span>
+                            <input
+                                type="color"
+                                value="${escapeXML(config.canvasBackgroundColor)}"
+                                data-onchange="commit-color" data-oninput="sync-color-input" data-field="canvasBackgroundColor"
+                                class="w-8 h-8 ui-bg border ui-border-strong rounded p-1 cursor-pointer"
+                            >
+                            <input
+                                type="text"
+                                value="${escapeXML(config.canvasBackgroundColor)}"
+                                pattern="^#[0-9A-Fa-f]{6}$"
+                                data-oninput="commit-color" data-field="canvasBackgroundColor" data-sync-sibling="prev"
+                                class="flex-1 ui-bg border ui-border-strong rounded-lg px-2.5 py-1 text-xs font-mono ui-text"
+                            >
+                        </div>
+                        ` : ''}
+                    </div>
+
+                    <!-- Monospace Font Family -->
+                    <div class="space-y-2">
+                        <label for="input-fontFamily" class="text-xs font-semibold ui-text flex items-center gap-2">
+                            <i data-lucide="type" class="w-4 h-4 text-indigo-400"></i>
+                            Terminal Monospace Font Family
+                        </label>
+                        <select id="input-fontFamily"
+                            data-onchange="set-field" data-field="fontFamily"
+                            class="w-full ui-surface border ui-border-strong-80 rounded-xl px-3 py-2 text-xs ui-text font-mono focus:outline-none focus:border-blue-500 cursor-pointer"
+                        >
+                            ${FONT_OPTIONS.map(f => `
+                                <option value="${escapeXML(f.value)}" ${config.fontFamily === f.value ? 'selected' : ''}>
+                                    ${escapeXML(f.label)}
+                                </option>
+                            `).join('')}
+                        </select>
+                        <p class="text-[11px] ui-text-muted">
+                            "Fira Code" and "JetBrains Mono" require the font to be installed locally and fall back to generic monospace otherwise; "Consolas / SFMono" and "Courier New" render reliably without any external dependencies.
+                        </p>
+                    </div>
+                    <div class="p-4 ui-surface-60 border ui-border rounded-xl space-y-3">
+                        <div class="flex items-center justify-between">
+                            <label for="input-sparklesEnabled" class="text-xs font-semibold ui-text flex items-center gap-2">
+                                <i data-lucide="sparkles" class="w-4 h-4 text-amber-400"></i>
+                                Decorative Corner Sparkle Accents
+                            </label>
+                            <input id="input-sparklesEnabled"
+                                type="checkbox"
+                                ${config.sparkles?.enabled ? 'checked' : ''}
+                                data-onchange="set-field" data-setter="sparkles" data-field="enabled" data-rerender
+                                class="w-4 h-4 accent-blue-600 rounded cursor-pointer"
+                            >
+                        </div>
+
+                        ${config.sparkles?.enabled ? `
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                            <div>
+                                <label for="input-sparklesColor" class="block text-[11px] ui-text-muted mb-1">Sparkle Color</label>
+                                <div class="flex items-center gap-2">
+                                    <input id="input-sparklesColor"
+                                        type="color"
+                                        value="${escapeXML(config.sparkles.color)}"
+                                        data-onchange="commit-color" data-oninput="sync-color-input" data-setter="sparkles" data-field="color"
+                                        class="w-7 h-7 ui-bg border ui-border-strong rounded p-0.5 cursor-pointer"
+                                    >
+                                    <input
+                                        type="text"
+                                        value="${escapeXML(config.sparkles.color)}"
+                                        pattern="^#[0-9A-Fa-f]{6}$"
+                                        data-oninput="commit-color" data-setter="sparkles" data-field="color" data-sync-sibling="prev"
+                                        class="flex-1 ui-bg border ui-border-strong rounded-lg px-2 py-1 text-xs font-mono ui-text uppercase"
+                                    >
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="input-sparklesOpacity" class="block text-[11px] ui-text-muted mb-1 flex justify-between">
+                                    <span>Sparkle Opacity (${Math.round((config.sparkles.opacity || 0.45) * 100)}%)</span>
+                                </label>
+                                <input id="input-sparklesOpacity"
+                                    type="range"
+                                    min="0.1"
+                                    max="1"
+                                    step="0.05"
+                                    value="${escapeXML(config.sparkles.opacity || 0.45)}"
+                                    data-oninput="update-sparkle-opacity"
+                                    class="w-full accent-amber-500 mt-2"
+                                >
+                            </div>
+                        </div>
+                        ` : ''}
+                    </div>
+                </div>
+            `
+        };
+
+        function renderHistoryNodeHTML(node, index) {
+            return `
+                <div class="ui-bg border ui-border rounded-xl p-4 relative group">
+                    <div class="absolute -left-2 top-1/2 -translate-y-1/2 w-4 h-4 ui-surface border-2 ui-border-strong rounded-full flex items-center justify-center text-[8px] font-bold ui-text-muted group-hover:ui-border-muted group-hover:ui-text-soft transition-colors">
+                        ${index + 1}
+                    </div>
+                    <div class="pl-4">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-medium ui-text-subtle uppercase tracking-wider">Historical Node</span>
+                            <button type="button" data-onclick="remove-history-node" data-index="${index}" aria-label="Remove history node" class="p-1.5 ui-text-subtle hover:text-red-400 hover:bg-red-400/10 rounded-lg transition-colors"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+                            <div>
+                                <label for="input-historyTitle-${index}" class="block text-[10px] ui-text-muted mb-1">Title</label>
+                                <input id="input-historyTitle-${index}" type="text" value="${escapeXML(node.title)}" data-oninput="update-history-node" data-index="${index}" data-key="title" maxlength="40" class="w-full ui-surface border ui-border-strong rounded-md px-3 py-1.5 text-sm ui-text focus:outline-none focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label for="input-historyStatus-${index}" class="block text-[10px] ui-text-muted mb-1">Status / Subtitle</label>
+                                <input id="input-historyStatus-${index}" type="text" value="${escapeXML(node.status)}" data-oninput="update-history-node" data-index="${index}" data-key="status" maxlength="40" class="w-full ui-surface border ui-border-strong rounded-md px-3 py-1.5 text-sm ui-text focus:outline-none focus:border-blue-500">
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                            <div class="flex-1 flex items-center gap-3 ui-surface rounded-md px-3 py-1.5 border ui-border">
+                                <label for="input-historyOpacity-${index}" class="text-[10px] ui-text-muted uppercase font-medium">Opacity</label>
+                                <input id="input-historyOpacity-${index}" type="range" min="0" max="100" value="${node.opacity * 100}" data-oninput="update-history-node" data-index="${index}" data-key="opacity" class="flex-1">
+                                <span id="opacity-label-${index}" class="text-[10px] ui-text-soft font-mono w-8 text-right">${Math.round(node.opacity * 100)}%</span>
+                            </div>
+                            <div class="w-1/3">
+                                <select data-onchange="update-history-node" data-index="${index}" data-key="icon" class="w-full ui-surface border ui-border rounded-md px-2 py-1.5 text-xs ui-text-soft focus:outline-none focus:border-blue-500">
+                                    <option value="none" ${node.icon === 'none' ? 'selected' : ''}>No Icon</option>
+                                    <option value="lock" ${node.icon === 'lock' ? 'selected' : ''}>Lock Icon</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function switchTab(tabId) {
+            config.activeTab = tabId;
+            saveConfig();
+
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.className = `tab-btn flex-1 py-2 px-3 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 transition-all ui-text-muted hover:ui-text hover:ui-surface-muted-60`;
+                btn.setAttribute('aria-selected', 'false');
+            });
+
+            const activeBtn = document.getElementById(`tab-${tabId}`);
+            if (activeBtn) {
+                activeBtn.className = `tab-btn flex-1 py-2 px-3 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 transition-all bg-blue-600 text-white shadow-md shadow-blue-600/30`;
+                activeBtn.setAttribute('aria-selected', 'true');
+            }
+
+            renderEditor();
+        }
+
+        function renderEditor() {
+            const container = document.getElementById('editor-content');
+            if (container && EDITOR_TEMPLATES[config.activeTab]) {
+                container.innerHTML = EDITOR_TEMPLATES[config.activeTab]();
+                container.querySelectorAll('[data-bg-color]').forEach(el => {
+                    el.style.backgroundColor = el.dataset.bgColor;
+                });
+            }
+            safeCreateIcons();
+        }
+
+        function updateActiveNode(key, value) {
+            if (key === 'color' && config.themeColorBindings) config.themeColorBindings.activeNodeColor = false;
+            config.activeNode[key] = value;
+            saveConfig();
+            renderPreviewComponent();
+        }
+
+        function updateHistoryNode(index, key, value) {
+            if (key === 'opacity') {
+                const numVal = parseFloat(value) / 100;
+                config.historyNodes[index][key] = numVal;
+                const label = document.getElementById(`opacity-label-${index}`);
+                if (label) label.innerText = `${Math.round(numVal * 100)}%`;
+            } else {
+                config.historyNodes[index][key] = value;
+            }
+            saveConfig();
+            renderPreviewComponent();
+        }
+
+        const MAX_HISTORY_NODES = 12;
+
+        function addHistoryNode() {
+            // Cap history nodes
+            if (config.historyNodes.length >= MAX_HISTORY_NODES) {
+                alert(`Maximum of ${MAX_HISTORY_NODES} history nodes reached.`);
+                return;
+            }
+            config.historyNodes.push({
+                title: 'New Milestone',
+                status: 'pending',
+                icon: 'none',
+                opacity: 0.5
+            });
+            saveConfig();
+            renderEditor();
+            renderPreviewComponent();
+        }
+
+        function removeHistoryNode(index) {
+            config.historyNodes.splice(index, 1);
+            saveConfig();
+            renderEditor();
+            renderPreviewComponent();
+        }
+
+        function applyTheme(themeKey) {
+            const t = THEMES[themeKey];
+            if (!t) return;
+
+            if (!config.themeColorBindings) {
+                config.themeColorBindings = cloneConfig(DEFAULT_CONFIG.themeColorBindings);
+            }
+
+            config.theme = themeKey;
+            currentTheme = themeKey;
+
+            if (config.themeColorBindings.activeNodeColor) config.activeNode.color = t.success;
+            if (config.themeColorBindings.terminalBorderColor) config.terminalBorderColor = t.accent;
+            if (config.themeColorBindings.cursorColor) config.cursorColor = t.accent;
+            if (config.sparkles && config.themeColorBindings.sparkleColor) config.sparkles.color = t.accent;
+
+            const headerSelect = document.getElementById('header-theme-select');
+            if (headerSelect) headerSelect.value = themeKey;
+
+            saveConfig();
+            renderPreviewComponent();
+            renderEditor();
+        }
+
+        function handleExportJson() {
+            const jsonStr = JSON.stringify(config, null, 2);
+            const blob = new Blob([jsonStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'terminal-card-config.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function applyTemplate(templateId) {
+            const tmpl = TEMPLATES.find(t => t.id === templateId);
+            if (tmpl && tmpl.config) {
+                config = normalizeConfig({ ...config, ...tmpl.config });
+                currentTheme = config.theme;
+                // Track current theme instead of static template hex
+                applyTheme(config.theme);
+            }
+        }
+
+        function openModal(id) {
+            document.getElementById(id)?.classList.add('active');
+        }
+        function clearPushToken() {
+            pushToken = null;
+            const tokenInput = document.getElementById('push-token');
+            if (tokenInput) tokenInput.value = '';
+        }
+
+        function closeModal(id) {
+            document.getElementById(id)?.classList.remove('active');
+            if (id === 'export-modal') clearPushToken();
+        }
+
+        document.querySelectorAll('.modal-overlay').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    clearPushToken();
+                }
+            });
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-overlay.active').forEach(modal => {
+                    modal.classList.remove('active');
+                });
+                clearPushToken();
+            }
+        });
+
+        function showToast(message, isError = false) {
+            let toast = document.getElementById('global-toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'global-toast';
+                toast.setAttribute('role', 'alert');
+                toast.className = 'fixed bottom-4 right-4 px-4 py-2 rounded-lg shadow-lg text-sm font-medium transition-opacity duration-300 z-50 opacity-0 pointer-events-none';
+                document.body.appendChild(toast);
+            }
+            toast.textContent = message;
+            toast.className = 'fixed bottom-4 right-4 px-4 py-2 rounded-lg shadow-lg text-sm font-medium transition-opacity duration-300 z-50 ' +
+                (isError ? 'bg-rose-500 text-white' : 'bg-emerald-500 text-white');
+
+            // Trigger reflow for transition
+            void toast.offsetWidth;
+            toast.classList.remove('opacity-0');
+            toast.classList.add('opacity-100');
+
+            if (toast._timer) clearTimeout(toast._timer);
+            toast._timer = setTimeout(() => {
+                toast.classList.remove('opacity-100');
+                toast.classList.add('opacity-0');
+            }, 3000);
+        }
+
+        function copyToClipboard(text) {
+            const onSuccess = () => {
+                showToast('Copied to clipboard!');
+            };
+
+            const onError = (err) => {
+                console.error('Clipboard error', err);
+                showToast('Failed to copy to clipboard!', true);
+            };
+
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(onSuccess).catch(onError);
+            } else {
+                try {
+                    const textArea = document.createElement("textarea");
+                    textArea.value = text;
+                    textArea.style.position = "fixed";
+                    textArea.style.left = "-999999px";
+                    document.body.appendChild(textArea);
+                    textArea.focus();
+                    textArea.select();
+                    const successful = document.execCommand('copy');
+                    textArea.remove();
+
+                    if (successful) {
+                        onSuccess();
+                    } else {
+                        onError(new Error('execCommand copy failed'));
+                    }
+                } catch (err) {
+                    onError(err);
+                }
+            }
+        }
+
+        function copySVGCodeModal() {
+            copyToClipboard(generateSVG());
+        }
+
+        function renderApp() {
+            currentTheme = config.theme;
+            const headerSelect = document.getElementById('header-theme-select');
+            if (headerSelect) headerSelect.value = config.theme;
+            switchTab(config.activeTab);
+            renderPreviewComponent();
+        }
+
+        // ── UI theme (app chrome light/dark, independent of SVG color themes) ──
+        const UI_THEME_KEY = 'terminal_card_ui_theme';
+
+        function applyUiTheme(theme) {
+            document.documentElement.classList.toggle('light-mode', theme === 'light');
+        }
+
+        function toggleUiTheme() {
+            const next = document.documentElement.classList.contains('light-mode') ? 'dark' : 'light';
+            applyUiTheme(next);
+            localStorage.setItem(UI_THEME_KEY, next);
+        }
+
+        applyUiTheme(localStorage.getItem(UI_THEME_KEY) || 'dark');
+
+        // ── Event delegation (data-onclick/data-oninput/data-onchange → ACTIONS map) ──
+        const SETTERS = {
+            config: updateConfigField,
+            'active-node': updateActiveNode,
+            sparkles: updateSparkles
+        };
+
+
+        function readFieldValue(el) {
+            if (el.dataset.value !== undefined) return el.dataset.value;
+            if (el.type === 'checkbox') return el.checked;
+            return el.value;
+        }
+
+        const ACTIONS = {
+            'apply-theme': (el) => applyTheme(el.dataset.themeKey ?? el.value),
+            'apply-template': (el) => applyTemplate(el.value),
+            'toggle-ui-theme': () => toggleUiTheme(),
+            'export-json': () => handleExportJson(),
+            'reset-config': () => handleReset(),
+            'open-modal': (el) => openModal(el.dataset.modalId),
+            'close-modal': (el) => closeModal(el.dataset.modalId),
+            'switch-tab': (el) => switchTab(el.dataset.tabId),
+            'set-view-mode': (el) => setViewMode(el.dataset.viewMode),
+            'set-preview-bg': (el) => setPreviewBg(el.dataset.bg),
+            'adjust-zoom': (el) => { const v = parseFloat(el.dataset.delta); if (!isNaN(v)) adjustZoom(v); },
+            'reset-zoom': () => resetZoom(),
+            'copy-code': () => handleCopyCode(),
+            'download-svg': () => handleDownloadSVG(),
+            'copy-text': (el) => copyToClipboard(el.dataset.copyText),
+            'copy-svg-code': () => copySVGCodeModal(),
+            'set-push-token': (el) => { pushToken = el.value; },
+            'push-to-github': () => handlePushToGitHub(),
+
+
+            'set-field': (el) => {
+                const setter = SETTERS[el.dataset.setter || 'config'];
+                if (!setter) return;
+                setter(el.dataset.field, readFieldValue(el));
+                if (el.dataset.rerender !== undefined) renderEditor();
+            },
+
+            // Colour picker ↔ hex text field sync (drag=sibling only, commit on mouseup).
+            'sync-color-input': (el) => {
+                if (el.nextElementSibling) el.nextElementSibling.value = el.value;
+            },
+            'commit-color': (el) => {
+
+                const val = el.value;
+                if (el.type === 'text' && !/^#[0-9A-Fa-f]{6}$/.test(val)) return;
+                const sib = el.dataset.syncSibling === 'next' ? el.nextElementSibling
+                    : el.dataset.syncSibling === 'prev' ? el.previousElementSibling
+                        : null;
+                if (sib) sib.value = val;
+                const setter = SETTERS[el.dataset.setter || 'config'];
+                if (setter) setter(el.dataset.field, val);
+            },
+
+            'update-cursor-blink-duration': (el) => {
+                const dur = parseFloat(el.value);
+                if (isNaN(dur)) return;
+                updateConfigField('cursorBlinkDuration', dur);
+                if (el.previousElementSibling) el.previousElementSibling.innerText = `Blink Cycle (${el.value}s)`;
+            },
+            'update-sparkle-opacity': (el) => {
+                const op = parseFloat(el.value);
+                if (isNaN(op)) return;
+                updateSparkles('opacity', op);
+                if (el.previousElementSibling) el.previousElementSibling.innerText = `Sparkle Opacity (${Math.round(el.value * 100)}%)`;
+            },
+
+            'add-history-node': () => addHistoryNode(),
+            'remove-history-node': (el) => { const i = parseInt(el.dataset.index, 10); if (!isNaN(i)) removeHistoryNode(i); },
+            'update-history-node': (el) => {
+                const idx = parseInt(el.dataset.index, 10);
+                if (!isNaN(idx)) updateHistoryNode(idx, el.dataset.key, readFieldValue(el));
+            },
+
+            'add-terminal-line': () => handleAddTerminalLine(),
+            'move-terminal-line': (el) => { const i = parseInt(el.dataset.index, 10); if (!isNaN(i)) handleMoveTerminalLine(i, el.dataset.direction); },
+            'delete-terminal-line': (el) => handleDeleteTerminalLine(el.dataset.lineId),
+            'update-terminal-line': (el) => {
+                handleUpdateTerminalLine(el.dataset.lineId, el.dataset.key, readFieldValue(el));
+            }
+        };
+
+        function dispatchAction(attr, event) {
+            const el = event.target.closest(`[${attr}]`);
+            if (!el) return;
+            const action = ACTIONS[el.getAttribute(attr)];
+            if (action) {
+                try {
+                    action(el, event);
+                } catch (err) {
+                    console.error(`[dispatchAction] Error in "${el.getAttribute(attr)}":`, err);
+                }
+            }
+        }
+
+        document.addEventListener('click', (e) => dispatchAction('data-onclick', e));
+        document.addEventListener('input', (e) => dispatchAction('data-oninput', e));
+        document.addEventListener('change', (e) => dispatchAction('data-onchange', e));
+
+
+        function initTabKeyboardNavigation() {
+            const tablist = document.querySelector('[role="tablist"]');
+            if (!tablist) return;
+
+            tablist.addEventListener('keydown', (e) => {
+                const tabs = Array.from(tablist.querySelectorAll('[role="tab"]'));
+                const index = tabs.indexOf(document.activeElement);
+                if (index === -1) return;
+
+                let newIndex = index;
+                if (e.key === 'ArrowRight') {
+                    newIndex = (index + 1) % tabs.length;
+                    e.preventDefault();
+                } else if (e.key === 'ArrowLeft') {
+                    newIndex = (index - 1 + tabs.length) % tabs.length;
+                    e.preventDefault();
+                }
+
+                if (newIndex !== index) {
+                    tabs[newIndex].focus();
+                    tabs[newIndex].click();
+                }
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            renderApp();
+            safeCreateIcons();
+            initPinchToZoom();
+            initTabKeyboardNavigation();
+        });
+
+    </script>
+</body>
+
+</html>

@@ -35,7 +35,7 @@
   <text x="254.5" y="79" text-anchor="middle" font-family="&apos;Courier New&apos;, Courier, monospace" font-size="11.5" fill="#8b949e">Current Focus</text>
   
   <text x="66" y="110" font-family="&apos;Courier New&apos;, Courier, monospace" font-size="11"><tspan fill="#7aa2f7">$ </tspan><tspan fill="#c9d1d9">you@github: ~/dvrdnz:</tspan></text>
-<text x="66" y="130" font-family="&apos;Courier New&apos;, Courier, monospace" font-size="11"><tspan fill="#58a6ff"> ☁️ Azure Administrator Certificat (AZ-104)</tspan></text>
+<text x="66" y="130" font-family="&apos;Courier New&apos;, Courier, monospace" font-size="11"><tspan fill="#58a6ff"> ☁️ Azure Administrator Certificate (AZ-104)</tspan></text>
 <text x="66" y="150" font-family="&apos;Courier New&apos;, Courier, monospace" font-size="11"><tspan fill="#ff9500">🛡️ Linux hardening with systemd, LUKS2 and dm-verity</tspan></text>
 <text x="66" y="170" font-family="&apos;Courier New&apos;, Courier, monospace" font-size="11"><tspan fill="#ffffff">🏗️ Infrastructure and Platform Engineering</tspan></text>
 <text x="66" y="190" font-family="&apos;Courier New&apos;, Courier, monospace" font-size="11"><tspan fill="#24a800">👁️ Observability with Prometheus and Grafana</tspan></text>

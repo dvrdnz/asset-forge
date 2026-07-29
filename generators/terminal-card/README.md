@@ -143,7 +143,7 @@ The hash-pinned CSP is the app’s main defense against injected script, but it 
 
 * **SVG canvas dimensional overflow:** while the UI enforces hard limits on terminal lines and truncates text, the SVG height and width grow additively. Extreme configurations could theoretically stretch the canvas beyond optimal GitHub Markdown bounds.
 * **GitHub API rate limits:** the “Push to GitHub” feature communicates directly from your browser. Excessive usage may trigger temporary IP-based rate limiting.
-* **Validation:** repository names and branch names are validated before dispatching events.
+* **Validation:** repository names, branch names, and the target path are validated before dispatching events.
 * **Modal Keyboard Focus (known limitation):** The export/push modal is marked `role="dialog" aria-modal="true"`, but focus isn't yet moved into it on open or trapped there — `Tab` can still reach controls behind the overlay while the modal is up. No effect on mouse use; matters for keyboard and screen-reader users. Tracked for a future update.
 
 ---

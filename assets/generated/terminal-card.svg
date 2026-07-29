@@ -47,17 +47,6 @@
                         <animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;0.5;0.5;1;1" dur="1.1s" repeatCount="indefinite"/>
                     </rect>
                 
-  <line x1="230" y1="330" x2="230" y2="413" stroke="#24283b" stroke-width="2"/>
-                    <circle cx="230" cy="368" r="14" fill="#1a1b26" stroke="#9ece6a" stroke-width="3"/>
-                    <circle cx="230" cy="368" r="5" fill="#9ece6a"/>
-                    <line x1="244" y1="368" x2="254" y2="368" stroke="#9ece6a" stroke-width="2"/>
-                    <rect x="254" y="348" width="156" height="42" rx="8" fill="#1a1b26" stroke="#9ece6a" stroke-width="1.4"/>
-                    <text x="266" y="366" font-family="&apos;Courier New&apos;, Courier, monospace" font-size="12.5" fill="#9ece6a">📚  Projects </text>
-                    <text x="266" y="383" font-family="&apos;Courier New&apos;, Courier, monospace" font-size="10.5" fill="#8b949e"></text>
-                
-                    <circle cx="230" cy="383" r="2" fill="#24283b"/>
-                    <circle cx="230" cy="393" r="2" fill="#24283b"/>
-                    <circle cx="230" cy="403" r="2" fill="#24283b"/>
-                
+  
   <text x="254.5" y="612" text-anchor="middle" font-family="&apos;Courier New&apos;, Courier, monospace" font-style="italic" font-size="12" fill="#8b949e"></text>
 </svg>

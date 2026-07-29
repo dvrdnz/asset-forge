@@ -1,0 +1,75 @@
+name: Update SVG from Asset Forge
+
+on:
+  workflow_dispatch:
+    inputs:
+      svg_content:
+        description: 'Base64-encoded SVG content'
+        required: true
+        type: string
+      target_path:
+        description: 'Target path of the file in the repo (must be assets/generated/<name>.svg)'
+        required: true
+        type: string
+        default: 'assets/generated/terminal-card.svg'
+      commit_message:
+        description: 'Commit message'
+        required: false
+        type: string
+        default: 'Update terminal-card.svg via generator'
+
+# Only contents write permission for this one job.
+# The browser token needs none of this.
+permissions:
+  contents: write
+
+jobs:
+  update-svg:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate target path
+        env:
+          TARGET_PATH: ${{ inputs.target_path }}
+        run: |
+          path="$TARGET_PATH"
+          # Only allow writing .svg files inside assets/generated/, no traversal,
+          # no absolute paths, no dotfiles/dotdirs. This is what actually limits
+          # what a triggered dispatch can touch -- inputs are just user text.
+          if [[ "$path" == /* ]] || [[ "$path" == *".."* ]]; then
+            echo "::error::target_path must not be absolute or contain '..'"
+            exit 1
+          fi
+          if [[ ! "$path" =~ ^assets/generated/[A-Za-z0-9_-]+\.svg$ ]]; then
+            echo "::error::target_path must match assets/generated/<name>.svg, got: $path"
+            exit 1
+          fi
+
+      - name: Write SVG file
+        env:
+          TARGET_PATH: ${{ inputs.target_path }}
+          SVG_CONTENT: ${{ inputs.svg_content }}
+        run: |
+          mkdir -p "$(dirname "$TARGET_PATH")"
+          echo "$SVG_CONTENT" | base64 -d > "$TARGET_PATH"
+
+      - name: Commit and push
+        env:
+          TARGET_PATH: ${{ inputs.target_path }}
+          COMMIT_MESSAGE: ${{ inputs.commit_message }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # -f is required: assets/generated/ is in .gitignore by design (see
+          # .gitignore comment). This is a deliberate, path-validated bypass --
+          # $TARGET_PATH was already checked against the allowlist regex above,
+          # so -f here only ever adds a file matching assets/generated/<name>.svg.
+          git add -f "$TARGET_PATH"
+          if git diff --cached --quiet; then
+            echo "No changes, nothing to commit."
+            exit 0
+          fi
+          git commit -m "$COMMIT_MESSAGE"
+          git push

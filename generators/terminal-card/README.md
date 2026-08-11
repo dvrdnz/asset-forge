@@ -1,10 +1,12 @@
 # generators/terminal-card
 
-Interactive **SVG Terminal Card Generator** — a single self-contained `index.html` that lets you design a retro-terminal-style card with command lines, a Git-style timeline rail, animated cursor, sparkles, and theme controls, then export it as scalable SVG for GitHub profile READMEs.
+Interactive **SVG Terminal Card Generator** — a single self-contained `index.html` for designing retro-terminal-style cards with console output, an optional Git-style timeline rail, an animated cursor, decorative sparkles, configurable themes, and GitHub-oriented export workflows.
 
 **[→ Open the live generator](https://dvrdnz.github.io/asset-forge/generators/terminal-card/index.html)**
 
-No build step, no dependencies, no server required. Everything runs client-side in the browser.
+> **Current UI version: v2.0**
+
+No build step, no package installation, no server, and no runtime CDN dependencies are required. The editor runs entirely in the browser. The only optional network request is the GitHub API request used to trigger a configured Actions workflow.
 
 ---
 
@@ -12,82 +14,195 @@ No build step, no dependencies, no server required. Everything runs client-side 
 
 ### 1. Advanced Live Editor
 
-* **3-tab workflow:** Dedicated interfaces for **Terminal** (window + lines), **Timeline Rail** (milestones), and **Themes** (appearance + fonts).
-* **Content templates:** 5 built-in presets to jumpstart your design.
-* **Local persistence:** your configuration auto-saves to `localStorage` between visits, so it survives a reload. The GitHub token never does — see [Security Notes](#security-notes).
-* **Preview tools:** switch between **Preview** and **Code**, zoom in/out, reset zoom, and toggle preview backgrounds for easier editing.
+* **3-tab workflow:** Dedicated interfaces for **Terminal**, **Timeline Rail**, and **Themes**.
+* **Content templates:** 5 built-in presets to jumpstart a design.
+* **Local persistence:** card configuration is automatically saved to `localStorage` and survives reloads. The GitHub token is never persisted.
+* **Live preview tools:** switch between **Preview** and **Code**, zoom in/out, reset zoom, inspect rendered dimensions and SVG size, and compare preview backgrounds.
+* **Light/dark editor UI:** the generator chrome can switch independently of the exported SVG color theme.
+* **Context-aware canvas controls:** width, height, presets, and quick visibility toggles are grouped into the Themes/canvas workflow.
 
 ### 2. Terminal Customization
 
 * **Window chrome:** Toggle between macOS-style traffic lights or minimal GitHub-style gray dots.
-* **Dynamic console lines:** Add, remove, and reorder up to 20 console lines with prefix presets (`➜`, `»`, `$`, `✔`, `⚡`) and individual color selection.
-* **Blinking cursor:** Native SMIL-animated cursor (works without JS in the README) with configurable symbols, colors, and blink cycle duration.
+* **Dynamic console lines:** Add, remove, and reorder up to **20** console lines with prefix presets and individual color selection.
+* **Per-line styling:** Configure prefix, text, and color for each terminal line.
+* **Blinking cursor:** Native SMIL-animated cursor with configurable symbol, color, and blink cycle; the animation continues to work when the SVG is embedded in a README.
 * **Window title controls:** Customize title text and title color.
+* **Terminal font size:** Adjustable from **9–16 px**.
+* **Font presets:**
+  - Consolas / SFMono
+  - GitHub Monospace
+  - Menlo / Monaco (macOS)
+  - Lucida Console (Windows)
+  - Courier New
+* **Input normalization:** configuration values are normalized and text fields are length-limited before rendering.
 
 ### 3. Timeline Rail System
 
-* **Vertical progression:** A sleek Git-style rail connecting project milestones.
-* **Active node:** Highlight current missions with glowing accents and status metadata.
-* **History nodes:** Add up to 12 past milestones with adjustable opacity and specialized icons, including a lock icon for private projects.
+* **Vertical progression:** A Git-style rail connecting project milestones.
+* **Active node:** Highlight a current mission with title, status, iconography, and theme-aware accent colors.
+* **History nodes:** Add up to **12** past milestones with adjustable opacity and specialized icons, including a lock icon.
+* **Dynamic sizing:** the minimum canvas height is recalculated from the actual terminal/timeline content.
 
 ### 4. Themes & Visual Engine
 
-* **6 built-in themes:** GitHub Dark, GitHub Light, Dracula, Nord, Tokyo Night, and Cyberpunk.
-* **Modern typography:** Support for local monospace fonts such as Fira Code, JetBrains Mono, Consolas / SFMono, and Courier New with system fallbacks.
-* **Decorative accents:** SMIL-animated corner sparkles with configurable opacity and color.
-* **Canvas control:** Toggle transparent backgrounds for seamless GitHub UI integration.
+* **6 built-in SVG themes:** GitHub Dark, GitHub Light, Dracula, Nord, Tokyo Night, and Cyberpunk.
+* **Theme-managed colors:** Theme changes can automatically update terminal border, cursor, sparkle, active-node, and window-title colors.
+* **Manual color overrides:** Editing a theme-bound color disables that individual binding so later theme switches do not overwrite the manual choice.
+* **Decorative sparkles:** Enable/disable corner sparkles and configure their color and opacity.
+* **Canvas background:** Use a transparent SVG canvas or a custom solid canvas background color.
+* **Preview background comparison:** transparent grid, GitHub Dark, and GitHub Light.
 
-### 5. Export Options
+### 5. Canvas Sizing
 
-* **Direct download** of `terminal-card.svg`.
-* **Copy raw SVG code** for manual pasting into a repo file.
-* **Copy an HTML `<img>` tag** for a README-friendly embed snippet.
-* **Export JSON configuration** for sharing or versioning a setup.
-* **Push straight to a GitHub repo** by triggering a `workflow_dispatch` on an Actions workflow.
+The editor provides explicit width and height controls plus presets:
+
+| Preset | Size |
+| --- | ---: |
+| GitHub Card | 460 × 650 |
+| Square | 800 × 800 |
+| Banner | 1024 × 512 |
+| Open Graph | 1200 × 630 |
+| Reset | 460 × 650 |
+
+The configurable canvas is bounded to:
+
+* **Minimum width:** 365 px
+* **Maximum width:** 1400 px
+* **Maximum height:** 2200 px
+
+The selected width and height define the root SVG dimensions. The generator calculates the **minimum required height** from the current content and automatically raises the configured height when necessary; it does not automatically expand the canvas beyond the selected width or height for content width.
+
+The minimum-height calculation accounts for terminal rows, cursor rows, timeline nodes, footer, and sparkles where applicable.
+
+### 6. Preview and Inspection
+
+The preview panel provides:
+
+* **Preview / Code** view switching.
+* Zoom controls from **30% to 250%**.
+* Zoom reset.
+* Touch pinch-to-zoom support.
+* Rendered dimensions and generated SVG size.
+* Transparent, GitHub Dark, and GitHub Light preview backgrounds.
+* One-click raw SVG copying.
+* Temporary per-button copy feedback plus the global copy notification.
+
+### 7. Export Options
+
+The generator can:
+
+* Download `terminal-card.svg`.
+* Copy the raw SVG source.
+* Copy a README-ready HTML `<img>` snippet.
+* Export the current configuration as `terminal-card-config.json`.
+* Trigger a GitHub Actions `workflow_dispatch` request for automated SVG updates.
+
+Example README embedding:
+
+```html
+<img src="assets/terminal-card.svg" width="460" alt="Terminal Card" />
+```
+
+For GitHub README use, the exported SVG uses native SVG/SMIL animation rather than JavaScript. This allows the animated cursor to continue working when the SVG is embedded as an image.
 
 ---
 
 ## Quick Start
 
-1. Download or clone this generator's `index.html`.
-2. Open it directly in a browser.
-3. Pick a content template or start from the default, tweak it in the **Terminal** / **Timeline Rail** / **Themes** tabs, and watch the preview update live.
-4. Use **Export & Copy** when you are happy with the result.
+1. Open the live generator or download `index.html`.
+2. Select a content template or start from the default configuration.
+3. Customize the **Terminal**, **Timeline Rail**, and **Themes** tabs.
+4. Use the preview controls to inspect the result.
+5. Click **Export & Copy**.
+6. Either download the SVG, copy its source, or use the generated README `<img>` snippet.
+
+Because the application is self-contained, `index.html` can be opened directly in a modern browser.
 
 ---
 
 ## Integration & Deployment
 
-### Method 1: Manual (Quickest)
+### Method 1: Manual SVG integration
 
-1. Design your card in the generator.
-2. Click **Export & Copy** → **Copy raw SVG code**.
-3. In your GitHub repository, create a new file such as `assets/terminal-card.svg`, paste the code, and commit.
-4. Link it in your `README.md`:
+1. Design the card in the generator.
+2. Select **Export & Copy**.
+3. Download `terminal-card.svg` or copy the raw SVG code.
+4. Commit the SVG into your repository, for example:
 
-```markdown
-<img src="assets/terminal-card.svg" width="460" alt="Terminal Card" />
+   ```text
+   assets/terminal-card.svg
+   ```
+
+5. Embed it in your README:
+
+   ```html
+   <img src="assets/terminal-card.svg" width="460" alt="Terminal Card" />
+   ```
+
+### Method 2: Automated GitHub Actions update
+
+The generator can trigger an existing GitHub Actions workflow through `workflow_dispatch`. The browser authenticates the API request with the supplied fine-grained personal access token; the workflow runner performs the actual repository write using its `GITHUB_TOKEN`.
+
+The target repository must already contain a suitable workflow, for example:
+
+```text
+.github/workflows/update-svg.yml
 ```
 
-### Method 2: Automated Update (GitHub Actions)
+The workflow must accept the inputs used by the generator:
 
-Instead of downloading the SVG and committing it by hand, the generator can trigger a GitHub Actions workflow that writes and commits it for you.
+* `svg_content`
+* `target_path`
+* `commit_message`
 
-1. Get the workflow file into your target repo's default branch. Two cases:
+The default target path shown by the UI is:
 
-   * **You forked asset-forge** and plan to collect your generated assets in this repo: the workflow already exists at `.github/workflows/update-svg.yml`. GitHub disables Actions on forks by default, so open the **Actions** tab of your fork once and enable workflows there.
-   * **Your target is a different repo** (for example your profile README repo): copy `update-svg.yml` from this repo into `.github/workflows/update-svg.yml` there and push it to the default branch. The workflow must already exist in the repo before it can be triggered remotely.
-2. Create a **fine-grained personal access token**:
+```text
+assets/generated/terminal-card.svg
+```
 
-   * GitHub → **Settings** → **Developer settings** → **Personal access tokens** → **Fine-grained tokens** → **Generate new token**
-   * **Repository access**: “Only select repositories” → choose your target repo
-   * **Permissions** → **Repository permissions** → **Actions**: set to **Read and write**
-   * Leave **Contents** at “No access” — the workflow does not need browser-token content access
-   * Set a short expiration and generate the token
+#### Fork vs. another repository
 
-> `assets/generated/` and `assets/examples/` are gitignored either way, so a PR that only touches those paths merges without them. A new file there needs `git add -f` to be committed at all, which is exactly what this workflow does for the one path it writes to.
+* **Forked `asset-forge`:** if you keep generated assets in the fork, make sure GitHub Actions is enabled for the fork before using the workflow.
+* **Different target repository:** copy the workflow into `.github/workflows/update-svg.yml` in that repository and push it to the default branch before trying to trigger it remotely.
 
-> `target_path` is a free-text `workflow_dispatch` input, so the workflow validates it server-side before writing anything: it must match `assets/generated/<name>.svg`, with no absolute paths and no `..` traversal. Without that check, anyone able to trigger the workflow could point `target_path` at any file in the repo, including other workflow files.
+The generator validates the repository name, branch, workflow filename, target path, and commit message before dispatching the request. The browser-side target-path validation restricts the path to:
+
+```text
+assets/generated/<name>.svg
+```
+
+This prevents the browser-triggered workflow from being used to address arbitrary repository paths through the generator UI. The workflow itself should validate its inputs again server-side before writing files.
+
+#### Recommended token
+
+Use a **fine-grained GitHub personal access token** with:
+
+* Repository access restricted to the target repository.
+* **Actions: Read and write** permission.
+* No browser-side repository Contents write permission.
+* A short expiration period.
+
+The token lives only in JavaScript memory and is cleared when the export modal closes and after the request lifecycle completes. It is never stored in `localStorage`.
+
+#### Workflow dispatch size warning
+
+The SVG is UTF-8/base64 encoded before it is sent as a `workflow_dispatch` input. The generator warns when the encoded payload exceeds 60,000 characters because GitHub's effective workflow-dispatch input size has practical limits. The warning is deliberately presented as a precaution rather than as an official GitHub limit.
+
+---
+
+## Persistence and Configuration
+
+Card configuration is automatically saved to `localStorage` with a short debounce.
+
+Persisted card state includes the generator configuration but **not the GitHub personal access token**.
+
+The editor UI theme is stored separately under its own local-storage key.
+
+Use the **Reset** action to restore the default card configuration and remove the persisted card state.
+
+The v2 configuration normalizer supplies defaults for newly introduced fields such as `terminalFontSize` and `showFooter`, so older saved configurations can continue through the existing normalization path.
 
 ---
 
@@ -95,71 +210,156 @@ Instead of downloading the SVG and committing it by hand, the generator can trig
 
 ### Why one HTML file, no build step
 
+The application ships as a single `index.html` that can be opened directly. The file contains the UI, precompiled Tailwind CSS, JavaScript editor logic, SVG generation, icon definitions, and export functionality.
 
-Two decisions drive almost everything below: the app ships as a single `index.html` you can open by double-clicking, and the page runs under a Content-Security-Policy locked to `default-src 'self'`, with `script-src` and `style-src` pinned to the exact SHA-256 hashes of the inline `<script>` and `<style>` blocks. Pulling in a CDN, a framework, or a second local file would mean either loosening that CSP or recomputing its hashes, so the rest of the stack is chosen specifically to keep that CSP tight.
+The runtime does not require a package manager, framework bundle, CDN script, external font, or separate JavaScript file. The only optional outbound request is the GitHub API request used for the Actions workflow.
 
-* **Single-file architecture:** The complete application—including UI, styling, rendering logic, icons, and export engine—is contained within one monolithic `index.html`.
-* **Dependency isolation:** No external assets are fetched at runtime. CSS, JavaScript, SVG icon paths, and every required resource are embedded directly into the document. The only outbound network communication is the optional GitHub API request used for the Actions-based push workflow.
-* **Logic:** Vanilla JavaScript (ES6+) in a single inline `<script>` block.
-* **Styling:** Precompiled Tailwind CSS embedded as one inline `<style>` block.
-* **Graphics:** Native SVG with SMIL animations instead of Canvas or JavaScript-driven rendering.
-* **Security:** Eliminating runtime dependencies.
-* **Requirements:** A modern evergreen browser supporting `backdrop-filter`, `dvh`, and SMIL.
+### State and rendering: one config object, one render path
 
+A single mutable `config` object holds the card definition. Configuration updates feed the editor and preview rendering paths rather than maintaining a component tree or virtual DOM.
 
-### State and rendering: one config object, one re-render
+Interactive controls use delegated `data-onclick`, `data-oninput`, and `data-onchange` handlers, so dynamically rendered terminal lines and timeline nodes do not need individual event-listener registration.
 
-There is no component tree or virtual DOM. A single mutable `config` object holds the entire card definition; every edit calls a setter such as `updateConfigField()` or `updateHistoryNode()`, and then `renderEditor()` redraws the editor UI while `generateSVG()` redraws the preview from scratch. It is a “throw it away and redraw” model — simple to reason about, because the state is small and the whole file is meant to be readable top to bottom.
-
-Events are not bound per element. Three listeners — `click`, `input`, `change` — sit on `document` and read a `data-onclick` / `data-oninput` / `data-onchange` attribute off whatever was actually interacted with, then look up the matching handler in a central `ACTIONS` table. That is the point of the dispatcher: terminal lines and history nodes are added and removed at runtime, and delegation means a newly rendered line or node just works without any code having to re-bind a listener to it.
+Preview rendering is scheduled through `requestAnimationFrame` for frequent updates. Window resize handling also uses `requestAnimationFrame` to avoid redundant layout work.
 
 ### Two runtimes, one artifact
 
-The editor page and the exported SVG are two different execution environments, and that split explains a few choices that otherwise look unusual:
+The editor page and the exported SVG are deliberately separate runtimes.
 
-* **The cursor blinks via SMIL, not JS.** Once exported and embedded as `<img src="terminal-card.svg">` in a GitHub README, the SVG runs inside an `<img>` tag — GitHub’s renderer never executes a `<script>` there. Animation has to be native to SVG to survive the trip from editor to README.
-* **Every value written into the SVG string is escaped and clamped before it is concatenated.** `escapeXML()` sanitizes every interpolated string, and `safeSvgNumber()` guards numeric attributes against `NaN` / `Infinity`, so malformed themes or config values do not produce broken or exploitable markup.
-* **Hard caps live in the config layer, not just the UI.** `MAX_TERMINAL_LINES` (20), `MAX_HISTORY_NODES` (12), and `clampText()` truncation exist so the additive SVG canvas cannot grow past GitHub’s practical Markdown width even under an extreme configuration.
+* **The cursor blinks via SVG SMIL, not JavaScript.** Once exported and embedded with `<img src="terminal-card.svg">`, the SVG cannot rely on page JavaScript, so the animation remains inside the SVG itself.
+* **User-controlled values are escaped before SVG interpolation.** String content is XML-escaped and numeric SVG values are validated/clamped before being used in SVG attributes.
+* **Hard limits live in the configuration layer.** Terminal lines, history nodes, text fields, canvas dimensions, and other numeric configuration values are bounded before rendering rather than relying only on UI controls.
 
 ### Why no framework
 
-React or Vue would need to be bundled or loaded from somewhere — and “somewhere” is exactly what the CSP above is designed not to have. The UI is form-like: elements get added, removed, and reordered, but never nested very deeply. The `ACTIONS` table plus a full re-render covers that without a build step, a bundle, or a virtual DOM that would need to stay in sync across two very different rendering targets: the live editor and the exported static SVG.
+The editor is a deliberately small form-driven application. Vanilla JavaScript plus delegated event handling keeps the single-file architecture understandable and avoids a runtime framework or build pipeline.
 
 ### Trade-off: security vs. maintainability
 
-The hash-pinned CSP is the app’s main defense against injected script, but it means the source cannot be edited casually. Change so much as a character inside the inline `<script>` or `<style>` block, and its SHA-256 hash no longer matches the one declared in the `<meta http-equiv="Content-Security-Policy">` tag. Editing this file means recomputing and updating those hashes as part of the change, not as an afterthought.
+The CSP pins the inline script and style blocks to SHA-256 hashes. Any edit to those blocks changes their hashes and therefore requires the CSP declaration to be updated as part of the same change.
 
 ---
 
 ## Security Notes
 
-* **RAM-only tokens:** GitHub PATs are stored in transient JS variables. They are never written to `localStorage` and are nulled out immediately after use or when the modal closes. The token is only ever sent to `api.github.com` over HTTPS, and only to trigger the workflow — never to write repo contents directly. Scope tokens as narrowly as GitHub allows: a fine-grained PAT limited to **Actions: Read and write** on a single repository, with a short expiration, is the recommended setup. Avoid classic PATs with broad `repo` scope for this feature. Because the token is client-held, anyone with script-injection access to the page while it is open could read it for the duration of the session.
-* **Content Security Policy:** locked down to `default-src 'self'`, with `script-src` / `style-src` restricted to SHA-256 hashes of the exact inline `<script>` / `<style>` blocks, including the `<style>` embedded inside the generated SVG itself. `connect-src` only allows `https://api.github.com`. There are no third-party scripts, fonts, or CDNs.
-* **Sanitization:** all user inputs are passed through `escapeXML()` to prevent SVG-based injection attacks.
+### GitHub token handling
+
+GitHub PATs are:
+
+* Entered only when the GitHub Actions export is used.
+* Stored in a transient JavaScript variable.
+* Never persisted to `localStorage`.
+* Used to authenticate the request to `api.github.com`.
+* Cleared when the export modal closes and after the request lifecycle completes.
+
+A fine-grained PAT restricted to the target repository with **Actions: Read and write** is recommended. Avoid broad classic PATs with unnecessary permissions.
+
+Because the token exists in browser memory while the feature is being used, normal browser/session security still matters.
+
+### Content Security Policy
+
+The page uses a restrictive CSP with:
+
+* `default-src 'none'`
+* hash-pinned inline script/style execution
+* `connect-src https://api.github.com`
+* no external images
+* no external fonts
+* no media
+* no frames
+* no objects
+* no workers
+* no manifests
+* no form actions
+* no ancestor framing
+
+Changing the inline script or style blocks requires regenerating their corresponding SHA-256 hashes.
+
+### SVG input handling
+
+User-provided text is XML-escaped before it is placed into the generated SVG. Numeric configuration is normalized and bounded to prevent invalid values from propagating into SVG dimensions or attributes.
 
 ---
 
-## Critical Troubleshooting & Notes
+## Accessibility & Interaction
 
-* **SVG canvas dimensional overflow:** while the UI enforces hard limits on terminal lines and truncates text, the SVG height and width grow additively. Extreme configurations could theoretically stretch the canvas beyond optimal GitHub Markdown bounds.
-* **GitHub API rate limits:** the “Push to GitHub” feature communicates directly from your browser. Excessive usage may trigger temporary IP-based rate limiting.
-* **Validation:** repository names, branch names, and the target path are validated before dispatching events.
-* **Modal Keyboard Focus (known limitation):** The export/push modal is marked `role="dialog" aria-modal="true"`, but focus isn't yet moved into it on open or trapped there — `Tab` can still reach controls behind the overlay while the modal is up. No effect on mouse use; matters for keyboard and screen-reader users. Tracked for a future update.
+The editor includes several accessibility-oriented behaviors:
+
+* WAI-ARIA dialog semantics for modals.
+* Initial focus placement when a modal opens.
+* `Escape` closes active modals.
+* `Tab` and `Shift+Tab` are trapped within an open modal.
+* Focus returns to the element that opened the modal.
+* Visible focus styles for interactive controls.
+* Accessible labels for interactive controls, including generated color controls.
+* Reduced-motion support through `prefers-reduced-motion`.
+* `noscript` fallback explaining that JavaScript is required.
+
+The v2 modal implementation specifically addresses the previous keyboard-navigation limitation by managing focus within the active dialog.
+
+---
+
+## Troubleshooting & Notes
+
+### GitHub Actions request fails
+
+Check:
+
+1. The workflow already exists in the target repository's default branch.
+2. The workflow filename matches the value entered in the generator.
+3. The selected branch exists.
+4. The PAT is fine-grained and has **Actions: Read and write** access to the target repository.
+5. The target path matches `assets/generated/<name>.svg`.
+6. The SVG payload is not unusually large.
+7. The workflow is configured with a `workflow_dispatch` trigger and accepts the expected inputs.
+
+### SVG is larger than expected
+
+The **minimum required canvas height** increases with the number of rendered terminal rows and timeline nodes, and can also be affected by cursor, footer, and sparkle visibility. The editor automatically raises the configured height when it would otherwise be too small, subject to the 2200 px maximum.
+
+The configured canvas width is not automatically expanded to accommodate content.
+
+### Theme changes do not affect a manually chosen color
+
+This is intentional. When a theme-managed color is changed manually, its binding is disabled so later theme switches do not overwrite the custom value.
+
+### JavaScript is disabled
+
+The generator requires JavaScript for editing and rendering. The page displays a `noscript` message instead of pretending to be functional without JavaScript.
 
 ---
 
 ## Project Structure
 
-This generator lives under `generators/terminal-card/` in the [`asset-forge`](https://github.com/dvrdnz/asset-forge) repo, alongside other GitHub-profile asset generators. See [`asset-forge/examples`](https://github.com/dvrdnz/asset-forge/tree/main/examples) for sample output.
+```text
+asset-forge/
+└── generators/
+    └── terminal-card/
+        ├── index.html
+        ├── README.md
+        └── CHANGELOG.md
+```
+
+Sample generated assets are available under the repository's `examples/` directory.
 
 ---
 
 ## Browser Support
 
-Requires a modern evergreen browser. The app uses `backdrop-filter`, native SVG SMIL `<animate>` for the cursor blink, and CSS `dvh` units. JavaScript is required — the page shows a `<noscript>` fallback message otherwise.
+Use a modern evergreen browser with support for:
+
+* ES6+ JavaScript
+* `localStorage`
+* `requestAnimationFrame`
+* `backdrop-filter`
+* CSS `dvh`
+* native SVG SMIL animation
+* Clipboard APIs where available
+
+A fallback clipboard path using `document.execCommand('copy')` is retained for environments where the modern Clipboard API is unavailable.
 
 ---
 
 ## License
 
-Distributed under the MIT License. Part of the [asset-forge](https://github.com/dvrdnz/asset-forge) toolkit. See the license at the root of the `asset-forge` repository.
+Distributed under the **MIT License**. Part of the [`asset-forge`](https://github.com/dvrdnz/asset-forge) toolkit. See the license at the root of the repository.

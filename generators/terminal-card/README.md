@@ -28,6 +28,7 @@ No build step, no package installation, no server, and no runtime CDN dependenci
 * **Per-line styling:** Configure prefix, text, and color for each terminal line.
 * **Blinking cursor:** Native SMIL-animated cursor with configurable symbol, color, and blink cycle; the animation continues to work when the SVG is embedded in a README.
 * **Window title controls:** Customize title text and title color.
+* **Terminal Y positioning:** Adjust the vertical placement of the terminal inside the SVG canvas with live preview and clamped input.
 * **Terminal font size:** Adjustable from **9–16 px**.
 * **Font presets:**
   - Consolas / SFMono

@@ -28,6 +28,7 @@ This release is a substantial update of the `terminal-card` generator. It change
 - Added a reusable color-picker/hex-input helper with accessible labels and synchronized color controls.
 - Added a dedicated **Reset Card** confirmation modal.
 - Added per-control copy-success feedback for copy actions, including temporary check/“Copied!” states.
+- Added a user-configurable **Terminal Y** SVG layout control with input clamping and preview integration.
 - Added modal focus management:
   - focus moves into an opened modal
   - keyboard focus is trapped inside the active modal
